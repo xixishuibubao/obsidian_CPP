@@ -1,0 +1,5 @@
+#!/bin/sh
+# 告诉 Git 用 Windows 的 cmd.exe 执行后续批处理命令
+cmd //c powershell.exe -ExecutionPolicy Bypass -File "C:\Users\AS\.git-hooks\pre-commit.ps1"
+# 必须返回 0，允许 Git 继续提交
+exit 0
