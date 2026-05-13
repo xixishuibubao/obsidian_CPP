@@ -1,0 +1,513 @@
+# ARM32 内存注入笔记（UART 通讯外设）
+
+## 概念
+
+通过 UART 等通讯外设接收 ARM32 机器码，写入可执行缓冲区，由预先设计的 Task 执行注入的函数。代码仅在内存中存活，重启后销毁。
+
+```
+Host(编译) --UART--> Target ARM32 --写入--> RWX Buffer --调用--> 执行注入函数
+```
+
+## 环境
+
+- 目标：ARM32（Cortex-A/Cortex-M/R）
+- 编译器：arm-none-eabi-gcc 或 arm-linux-gnueabihf-gcc
+- 外设：UART（DMA 或 FIFO 中断接收）
+
+## 注入流程
+
+### 1. 准备可执行缓冲区
+
+**Linux 用户态（mmap）：**
+
+```c
+#include <sys/mman.h>
+
+size_t size = 4096;  // 页对齐
+void *rx_buf = mmap(NULL, size,
+                    PROT_READ | PROT_WRITE | PROT_EXEC,
+                    MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+if (rx_buf == MAP_FAILED) abort();
+```
+
+**裸机 / RTOS（MMU 配置）：**
+
+在 MMU 页表中将目标内存区域的 XN（Execute Never）位清零：
+
+```c
+// 以页表项为例（Cortex-A 短描述符格式）
+// 确保域和权限正确，清除 XN 位
+uint32_t *pte = (uint32_t *)(TTB_BASE + (virt_addr >> 20) * 4);
+*pte = (phys_addr & 0xFFF00000) | 0xC12;  // 节描述符，XN=0, AP=特权读写
+```
+
+**裸机 / RTOS（无 MMU，Cortex-M）：**
+
+Cortex-M 系列无 MMU，MPU 为可选外设：
+
+- **未使能 MPU**：所有内存区域默认可执行，直接将代码复制到 RAM 即可调用，无需特殊配置。
+- **使能 MPU**：需将目标内存 Region 的属性设置为可执行（XN=0）：
+
+```c
+// MPU 配置示例（Cortex-M3/M4/M7）
+MPU->RNR  = 0;                               // Region 编号
+MPU->RBAR = ((uint32_t)rx_buf)               // 基地址
+          | (1 << 4);                        // VALID=1，使用 Region 编号
+MPU->RASR = (0x00 << 28)  |                  // XN=0:  允许执行
+            (0x03 << 24)  |                  // AP=3:  全权限（特权+用户）
+            (0x01 << 18)  |                  // S=1:   可共享
+            (0x03 << 16)  |                  // TEX=3: 正常内存
+            (0x01 << 15)  |                  // C=1:   Cacheable
+            (0x01 << 14)  |                  // B=1:   Bufferable
+            (CODE_REGION_SIZE_LOG2 << 1) |   // SIZE = 2^(size_log2+1)
+            (0x01 << 0);                     // ENABLE=1
+```
+
+> **Cortex-M 仅有 Thumb 模式**，函数指针 LSB 必须始终置 1。
+> **Cortex-M7 有 L1 Cache**，需要 D-Clean / I-Invalidate（M0/M3/M4 无缓存问题）。
+
+或使用链接脚本预留 RAM 区域的固定地址用于注入：
+
+```ld
+SECTIONS {
+    .exec_ram (NOLOAD) : ALIGN(4096) {
+        _exec_start = .;
+        . += 4K;
+        _exec_end = .;
+    } > DRAM
+}
+```
+
+### 2. UART 接收函数代码
+
+**DMA 方式（高效，适合大载荷）：**
+
+```c
+// 初始化 UART + DMA 通道
+// DMA 直接写入 rx_buf
+uart_dma_rx_init(UART2, rx_buf, MAX_CODE_SIZE);
+```
+
+**FIFO 中断方式（简单，适合小载荷）：**
+
+```c
+#define MAX_CODE_SIZE  256
+volatile uint32_t rx_index = 0;
+volatile uint8_t  *exec_buf;  // 指向 RWX 缓冲区
+
+void UART_IRQHandler(void) {
+    if (USART->SR & USART_SR_RXNE) {
+        uint8_t byte = USART->DR;
+        if (rx_index < MAX_CODE_SIZE) {
+            exec_buf[rx_index++] = byte;
+        }
+    }
+}
+```
+
+### 3. Cache 维护（关键步骤）
+
+ARM32 有分离的 I-Cache 和 D-Cache。写入数据到缓冲区后，必须先 Clean D-Cache 再 Invalidate I-Cache，否则 CPU 可能执行旧的指令。
+
+**方法一：GCC 内建函数（推荐）**
+
+```c
+__builtin___clear_cache((char*)rx_buf, (char*)rx_buf + code_size);
+```
+
+**方法二：ARM Linux 系统调用**
+
+```c
+// ARM32 Linux 提供了 cacheflush 系统调用
+// 定义在 <asm/cachectl.h> 或直接 syscall
+#include <unistd.h>
+#include <sys/syscall.h>
+
+void cache_flush(void *addr, size_t size) {
+    syscall(__ARM_NR_cacheflush, addr, addr + size, 0);
+}
+```
+
+**方法三：裸机 CP15 协处理器**
+
+```c
+__attribute__((always_inline))
+static inline void arm32_cache_flush(void *addr, size_t size) {
+    uint32_t start = (uint32_t)addr;
+    uint32_t end   = start + size;
+    uint32_t cl = 0;
+
+    // 读取 cache line 大小（D-Cache）
+    asm volatile("mrc p15, 0, %0, c0, c0, 1" : "=r"(cl));
+    cl = 32;  // 常见 Cortex-A 为 32 字节/line
+
+    // Clean D-Cache（将 dirty 数据写回内存）
+    for (uint32_t addr = start & ~(cl-1); addr < end; addr += cl) {
+        asm volatile("mcr p15, 0, %0, c7, c10, 1" : : "r"(addr));
+    }
+    dsb();
+
+    // Invalidate I-Cache（让 CPU 重新从内存取指令）
+    for (uint32_t addr = start & ~(cl-1); addr < end; addr += cl) {
+        asm volatile("mcr p15, 0, %0, c7, c5, 1" : : "r"(addr));
+    }
+    dsb();
+    isb();
+}
+```
+
+### 4. 执行注入函数
+
+注入的代码需为位置无关码（PIC），通过函数指针调用：
+
+```c
+// 假设 rx_buf 中已收到完整函数代码
+typedef void (*injected_fn_t)(void);
+
+injected_fn_t fn = (injected_fn_t)((uint32_t)rx_buf | 1);  // LSB=1: Thumb 模式
+cache_flush(rx_buf, code_size);
+
+// 在预设计的 Task 中执行
+void my_task(void *arg) {
+    fn();
+}
+```
+
+> LSB 置 1 表示处理器切换到 Thumb 状态。ARM 模式则不加 `| 1`。若用 `-mthumb` 编译，需加 1。
+
+## Payload 示例
+
+### 编译一个位置无关的 Thumb 函数
+
+```c
+// payload.c — 编译为纯机器码
+__attribute__((section(".text.payload"), naked, target("thumb")))
+static void payload_entry(void) {
+    // 示例：写一个已知值到特定寄存器，证明执行成功
+    volatile uint32_t *reg = (uint32_t *)0x40000000;
+    *reg = 0xDEADBEEF;
+
+    // 或控制 GPIO
+    // *GPIO_SET = (1 << 8);
+
+    __asm("bx lr");  // 返回
+}
+```
+
+编译命令：
+
+```bash
+arm-none-eabi-gcc -c payload.c -o payload.o -mthumb -fPIC -Os
+arm-none-eabi-objcopy -O binary -j .text.payload payload.o payload.bin
+hexdump -vC payload.bin  # 查看机器码
+```
+
+得到的 `payload.bin` 即为待注入的字节流。需确保体积不超过预设的 `MAX_CODE_SIZE`。
+
+### 手动构造极简 Thumb 载荷
+
+```asm
+@ 最小 Thumb 函数：返回一个固定值
+.thumb
+.section .text.payload, "ax"
+.type payload, %function
+payload:
+    movs r0, #42        @ 返回值 42
+    bx  lr              @ 返回
+```
+
+```bash
+arm-none-eabi-as payload.S -o payload.o -mthumb
+arm-none-eabi-objcopy -O binary -j .text.payload payload.o payload.bin
+# 结果应为 4 字节: 0x22 0x20 0x70 0x47 (小端)
+# movs r0, #42  => 0x2022
+# bx lr         => 0x4770
+```
+
+## 数组混淆直接注入
+
+将 Payload 以混淆后的字节数组形式直接嵌入源代码，脱离 UART 等外部通讯设备，适合无法动态接收代码的环境。
+
+### 生成编码后的数组
+
+```bash
+# 1. 编译 payload.bin
+arm-none-eabi-gcc -c payload.c -o payload.o -mthumb -fPIC -Os
+arm-none-eabi-objcopy -O binary -j .text.payload payload.o payload.bin
+
+# 2. 用 xxd 生成 C 数组
+xxd -i payload.bin | head -20
+
+# 输出示例：
+# unsigned char payload_bin[] = {
+#   0x22, 0x20, 0x70, 0x47
+# };
+# unsigned int payload_bin_len = 4;
+```
+
+### 混淆/去混淆
+
+为避免静态分析直接识别出机器码，对数组做简单 XOR 变换再嵌入。
+
+**编码（Host 侧，Python）：**
+
+```python
+import struct
+
+with open("payload.bin", "rb") as f:
+    raw = f.read()
+
+key = 0xA5
+encoded = bytes(b ^ key for b in raw)
+
+# 输出 C 数组
+print(f"// payload 长度: {len(raw)} bytes")
+print(f"// 混淆密钥: 0x{key:02X}")
+print("const uint8_t encoded_payload[] = {")
+for i in range(0, len(encoded), 12):
+    chunk = encoded[i:i+12]
+    hex_str = ", ".join(f"0x{b:02X}" for b in chunk)
+    print(f"    {hex_str},")
+print("};")
+```
+
+**解码（Target 侧，C）：**
+
+```c
+#define PAYLOAD_KEY  0xA5
+
+void decode_and_exec(void *exec_buf, const uint8_t *src, uint32_t len) {
+    for (uint32_t i = 0; i < len; i++) {
+        ((uint8_t *)exec_buf)[i] = src[i] ^ PAYLOAD_KEY;
+    }
+
+    __builtin___clear_cache(exec_buf, exec_buf + len);
+
+    typedef void (*fn_t)(void);
+    fn_t fn = (fn_t)((uint32_t)exec_buf | 1);
+    fn();
+}
+```
+
+### 多次 XOR / 滚动密钥（进阶）
+
+```python
+# 滚动密钥：每个字节依赖前一个加密结果，去混淆时反向运算
+def rolling_xor_encode(data, init_key=0xAB):
+    encoded = bytearray()
+    k = init_key
+    for b in data:
+        encoded.append(b ^ k)
+        k = encoded[-1]  # 下一个密钥 = 当前加密结果
+    return bytes(encoded)
+```
+
+```c
+void decode_rolling_xor(void *buf, const uint8_t *src, uint32_t len, uint8_t key) {
+    uint8_t *dst = (uint8_t *)buf;
+    for (uint32_t i = 0; i < len; i++) {
+        dst[i] = src[i] ^ key;
+        key = src[i];  // 与编码侧保持同步
+    }
+}
+```
+
+### 嵌入数组的完整示例
+
+```c
+// ===== 由 Python 脚本自动生成的混淆数组 =====
+// 原始: payload_entry()  写入 0xDEADBEEF 到 0x40000000
+// 编译: arm-none-eabi-gcc -mthumb -fPIC -Os -c payload.c
+// 密钥: 0xA5
+const uint8_t __attribute__((aligned(4))) obfuscated_code[] = {
+    0x87, 0x85, 0xD5, 0xE2,  // XOR 0xA5 后的 Thumb 指令
+    0x87, 0x85, 0x59, 0xE7,
+    // ... 实际长度由 payload 编译结果决定
+};
+const uint32_t obfuscated_code_len = sizeof(obfuscated_code);
+// =============================================
+
+// 预分配的 RWX 缓冲区（mmap 或链接脚本预留）
+static uint8_t exec_page[256] __attribute__((section(".exec_ram")));
+
+// 在 Task 中解码并执行
+void inject_task(void) {
+    // 1. 解码到可执行缓冲区
+    for (uint32_t i = 0; i < obfuscated_code_len; i++) {
+        exec_page[i] = obfuscated_code[i] ^ 0xA5;
+    }
+
+    // 2.  Cache 维护
+    __builtin___clear_cache(exec_page, exec_page + obfuscated_code_len);
+
+    // 3.  执行
+    typedef void (*fn_t)(void);
+    ((fn_t)((uint32_t)exec_page | 1))();
+
+    // 4.  清理（可选：擦除缓冲区防止被转储）
+    // memset(exec_page, 0, obfuscated_code_len);
+}
+```
+
+### 与 UART 注入对比
+
+| 特性 | UART 动态注入 | 数组直接注入 |
+|------|-------------|-------------|
+| 硬件依赖 | 需 UART/DMA 等通讯外设 | 无额外硬件需求 |
+| 触发时机 | 运行时由 Host 主动发送 | 编译时已固话，上电即可执行 |
+| 灵活性 | 可随时切换 Payload | 需重新编译固件 |
+| 隐蔽性 | 通讯过程可能被侦听 | 机器码被 XOR 混淆，静态分析不易识别 |
+| 适用场景 | 开发调试、远程升级 | 固件植入、PoC、受限环境 |
+
+```c
+#define PAGE_SIZE       4096
+#define MAX_CODE_SIZE   256
+
+uint8_t  code_buf[MAX_CODE_SIZE];  // UART DMA 接收用
+void    *exec_page;                // mmap 分配的可执行页
+uint32_t code_size = 0;
+bool     code_ready = false;
+
+// UART 接收完毕回调
+void on_code_received(uint32_t size) {
+    memcpy(exec_page, code_buf, size);
+    code_size = size;
+    __builtin___clear_cache(exec_page, exec_page + size);
+    code_ready = true;
+}
+
+// 预设计的 Task
+void exec_task(void) {
+    if (!code_ready) return;
+
+    typedef void (*fn_t)(void);
+    fn_t fn = (fn_t)((uint32_t)exec_page | 1);  // Thumb
+
+    fn();  // 执行注入函数
+
+    code_ready = false;  // 防止重复执行
+}
+
+// 主循环或调度器
+int main(void) {
+    exec_page = mmap_rwx(PAGE_SIZE);
+
+    uart_dma_start(UART2, code_buf, MAX_CODE_SIZE, on_code_received);
+
+    while (1) {
+        exec_task();
+        // 休眠或切换任务
+    }
+}
+```
+
+## 注意事项
+
+1. **关闭 ASLR（Linux 用户态）**：mmap 地址随机化不影响执行，但若需固定地址需 `personality(ADDR_NO_RANDOMIZE)`。
+2. **MMU 与 MPU**：裸机环境下确保目标内存区域在 MMU/MPU 中被标记为可执行。
+3. **栈指针**：注入函数使用当前 SP，若需要独立栈，函数入口处自行设置。
+4. **权限最小化**：生产环境应使用 `mprotect` 在注入完成后将页面改为 `PROT_READ | PROT_EXEC`，去掉写权限，防止被篡改。
+5. **校验**：注入前可添加 CRC/校验和验证 payload 完整性。
+6. **重启销毁**：代码仅存在于 DRAM/SRAM 中，断电或软复位后自动消失。
+
+## 不同编译器适配
+
+### ARM Compiler 5（armcc / AC5）
+
+**缓存维护：** 无 `__builtin___clear_cache`，使用 CP15 协处理器指令或 CMSIS 函数：
+
+```c
+// 通过 __MCR 内建函数访问 CP15
+for (uint32_t a = addr; a < addr + size; a += 32) {
+    __MCR(15, 0, a, c7, c10, 1);   // DCCMVAC：Clean D-Cache by MVA
+}
+__schedule_barrier();  // AC5 内存屏障（等效 DSB）
+for (uint32_t a = addr; a < addr + size; a += 32) {
+    __MCR(15, 0, a, c7, c5, 1);   // ICIMVAU：Invalidate I-Cache by MVA
+}
+__schedule_barrier();
+```
+
+**内联汇编：** 使用 `__asm` 或嵌入汇编函数：
+
+```c
+// __asm 单指令
+void call_fn(void *fn) {
+    __asm {
+        MOV lr, pc   // AC5 中无 bx 直接跳转的便捷写法
+        BX  fn
+    }
+}
+
+// 或在 C 文件中嵌入 asm 函数
+__asm void my_trap(void) {
+    BKPT #0
+    BX lr
+}
+```
+
+**Payload 编译：**
+
+```bash
+armcc --thumb --cpu Cortex-M4 --ropi -c payload.c -o payload.o
+fromelf --bin -o payload.bin payload.o
+```
+
+| AC5 选项 | 说明 |
+|----------|------|
+| `--thumb` | Thumb 指令集 |
+| `--cpu Cortex-M4` | 指定核心 |
+| `--ropi` | 只读段位置无关（等效 `-fPIC`） |
+| `--rwpi` | 读写段位置无关（通常不需要） |
+
+**Section 指定：** 与 GCC 相同：
+
+```c
+__attribute__((section(".text.payload")))
+static void payload_entry(void) { ... }
+```
+
+### ARM Compiler 6（armclang / AC6）
+
+AC6 基于 Clang/LLVM，语法和语义与 GCC 高度兼容：
+
+- **缓存维护**：`__builtin___clear_cache(buf, buf + size)` 直接可用
+- **内联汇编**：GCC 标准 `asm("...")` 语法
+- **`__attribute__`**：与 GCC 完全一致
+- **`-fPIC`**：支持
+
+```bash
+armclang --target=arm-arm-none-eabi -mcpu=cortex-m4 -mthumb -fPIC -Os -c payload.c -o payload.o
+arm-none-eabi-objcopy -O binary -j .text.payload payload.o payload.bin
+```
+
+> 若工具链不包含 `objcopy`，可用 `fromelf --bin -o payload.bin payload.o` 替代。
+
+### CMSIS 跨编译器方案（推荐）
+
+使用 CMSIS-Core 函数代替平台相关内建，实现 AC5/AC6/GCC 三通：
+
+```c
+#include "core_cm7.h"  // Cortex-M7 示例
+
+// 缓存维护（仅 M7 等带 cache 的核心需要）
+void cache_flush(void *addr, uint32_t size) {
+    uint32_t addr_align = (uint32_t)addr & ~0x1F;
+    for (; addr_align < (uint32_t)addr + size; addr_align += 32) {
+        SCB_CleanDCache_by_Addr((uint32_t *)addr_align);
+        SCB_InvalidateICache_by_Addr((uint32_t *)addr_align);
+    }
+}
+```
+
+CMSIS 函数在 AC5、AC6、GCC 下均可编译，推荐用于 Keil MDK 项目。
+
+### 编译选项对比总结
+
+| 功能    | GCC                       | AC5 (armcc)     | AC6 (armclang)            |
+| ----- | ------------------------- | --------------- | ------------------------- |
+| PIC   | `-fPIC`                   | `--ropi`        | `-fPIC`                   |
+| Thumb | `-mthumb`                 | `--thumb`       | `-mthumb`                 |
+| 缓存维护  | `__builtin___clear_cache` | `__MCR` / CMSIS | `__builtin___clear_cache` |
+| 提取二进制 | `objcopy -O binary`       | `fromelf --bin` | `objcopy` 或 `fromelf`     |
+| 内联汇编  | `asm("...")`              | `__asm{...}`    | `asm("...")`              |
