@@ -47,7 +47,7 @@ Images referenced by notes live in `/picture/`.
 ## Git & Obsidian Workflow
 
 - **Primary sync method**: The [obsidian-git](https://github.com/Vinzent03/obsidian-git) plugin commits and pushes from within Obsidian. The plugin's `Custom Git binary path` setting must point to `git.exe` (not `git-bash.exe`).
-- **Pre-commit hook**: A two-part setup: a PowerShell script (`99.临时杂物间/auto-gitkeep.ps1`) that auto-creates/removes `.gitkeep` files so empty directories are tracked, and a shell script (installed at `.git/hooks/pre-commit`) that calls the PowerShell script. When manually writing commits via CLI, the pre-commit hook runs automatically.
+- **Empty directories**: Tracked via `.gitkeep` files. Redundant `.gitkeep` files (in directories that now have content) should be manually removed with `git rm`.
 - **Commit message format**: Must follow [Conventional Commits](https://www.conventionalcommits.org/) — use `type(scope): description` structure. Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`, `build`. See `12.版本管理/2. log规范.md` for full details.
 - **.gitignore**: Ignores `.obsidian/*` (with exceptions for plugin/themes config), large files, temp files, and editor artifacts.
 
