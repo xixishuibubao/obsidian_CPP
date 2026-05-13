@@ -47,8 +47,9 @@ Images referenced by notes live in `/picture/`.
 ## Git & Obsidian Workflow
 
 - **Primary sync method**: The [obsidian-git](https://github.com/Vinzent03/obsidian-git) plugin commits and pushes from within Obsidian. The plugin's `Custom Git binary path` setting must point to `git.exe` (not `git-bash.exe`).
-- **Empty directories**: Tracked via `.gitkeep` files. Redundant `.gitkeep` files (in directories that now have content) should be manually removed with `git rm`.
+- **Empty directories**: Tracked via `.gitkeep` files, managed manually (no pre-commit hook). Redundant `.gitkeep` files (in directories that now have content) should be removed with `git rm`.
 - **Commit message format**: Must follow [Conventional Commits](https://www.conventionalcommits.org/) — use `type(scope): description` structure. Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`, `build`. See `12.版本管理/2. log规范.md` for full details.
+- **Vault backup commits**: The obsidian-git plugin may create auto-backup commits with meaningless messages. These should be squashed/fixup'd into the preceding meaningful commit via `git rebase -i`.
 - **.gitignore**: Ignores `.obsidian/*` (with exceptions for plugin/themes config), large files, temp files, and editor artifacts.
 
 ## Note Conventions
@@ -57,3 +58,4 @@ Images referenced by notes live in `/picture/`.
 - Images embedded via `![description](picture/filename.png)`.
 - Code snippets use standard markdown fenced blocks.
 - When cross-publishing to Feishu / WeChat Official Account, use [markdown.lovejade.cn](https://markdown.lovejade.cn/) for format conversion (select "公众号" mode).
+- **File naming**: `数字. 空格 + 名称` (e.g., `1. C++基础.md`, `2. 代码规范.md`). Both directories and files follow this convention.
