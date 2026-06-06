@@ -34,8 +34,8 @@ Images referenced by notes live in `/picture/`.
 | `06.Linux开发/` | RK3588/Yocto | `24.开源学习/` | 项目分析 |
 | `08.GUI与Qt/` | Qt | `25.架构设计/` | PIMPL/CLI |
 | `09.读书笔记/` | More Effective C++ | `99.临时杂物间/` | 草稿 |
-| `10.辅助语言/` | Shell/Markdown/PlantUML | | |
-| `11.MCU嵌入式/` | MCU 开发 | | |
+| `10.辅助语言/` | Shell/Markdown/PlantUML | `readme/` | 多语言 README |
+| `11.MCU嵌入式/` | MCU 开发 | `.claude/` | AI 配置 |
 | `12.版本管理/` | Git 操作 | | |
 
 ## Key Rules

@@ -17,6 +17,8 @@
 | `10.辅助语言/` | Shell, Lua, Python, CMake; Markdown/XML/CSS; PlantUML | 有内容 |
 | `11.MCU嵌入式/` | MCU 开发基础 | 有内容 |
 | `12.版本管理/` | Git 操作指南、log 规范 | 有内容 |
+| `readme/` | 多语言 README 文件 | 有内容 |
+| `.claude/` | Claude Code 辅助配置与指令 | 有内容 |
 | `13.通讯协议/` | 仅占位 `.gitkeep` | 空 |
 | `14.技术杂谈/` | 加载与劫持技术笔记 | 有内容 |
 | `15.内存管理/` | GC 内存回收算法 | 有内容 |
@@ -45,5 +47,6 @@
 ## 特殊文件
 
 - `CLAUDE.md` — 项目级 Claude Code 指引（本文件的上层入口）
-- `README.md` — 包含 pre-commit hook 脚本与跨平台发布说明
+- `README.md` — 项目介绍（中文，默认显示）
+- `readme/README_EN.md` — 项目介绍（英文版）
 - `.gitignore` — 忽略 `.obsidian/*`（白名单插件/主题）、大文件、编辑器临时文件
