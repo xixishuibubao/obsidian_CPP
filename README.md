@@ -3,7 +3,6 @@
 </p>
 
 <h1 align="center">📚 C/C++ 系统编程知识库</h1>
-<h3 align="center">C/C++ Systems Programming Knowledge Base</h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=c&logoColor=white" alt="C"/>
@@ -16,26 +15,19 @@
 </p>
 
 <p align="center">
-  <a href="#cn"><img src="https://img.shields.io/badge/🇨🇳-中文-red?style=for-the-badge&labelColor=red&color=white" alt="中文"/></a>
-  &nbsp;&nbsp;
-  <a href="#en"><img src="https://img.shields.io/badge/🇬🇧-English-blue?style=for-the-badge&labelColor=blue&color=white" alt="English"/></a>
+  <a href="readme/README_EN.md"><img src="https://img.shields.io/badge/🌏-English-blue?style=for-the-badge" alt="English"/></a>
 </p>
 
 ---
 
-<br>
+## 📖 项目简介
 
-<div id="cn">
-
-## 🇨🇳 中文
-
-### 📖 项目简介
-
-本仓库是一个**个人学习笔记知识库**，围绕 C/C++ 系统编程、Linux 环境、计算机体系结构等主题持续积累。所有笔记使用 **Markdown** 编写，通过 **Obsidian** 进行管理和同步。
+本仓库是一个 **个人学习笔记知识库**，围绕 C/C++ 系统编程、Linux 环境、计算机体系结构等主题持续积累。
+所有笔记使用 **Markdown** 编写，通过 **Obsidian** 进行管理和同步。
 
 > 🎯 **目标**：构建一份可检索、可复习的系统编程知识体系，覆盖从底层原理到工程实践的完整链路。
 
-### ✨ 特点
+## ✨ 专题一览
 
 | 🖥️ **C/C++** | 🐧 **Linux 环境** | ⚙️ **体系架构** |
 |:---:|:---:|:---:|
@@ -49,7 +41,7 @@
 |:---:|:---:|:---:|
 | SQL 语法 | More Effective C++ · 开源项目分析 | GC 算法 · 调试优化 · 架构设计 |
 
-### 📂 目录结构
+## 📂 目录结构
 
 ```
 📦 obsidian_files
@@ -75,11 +67,12 @@
 ├── 📁 25.架构设计/              # PIMPL · CLI 设计
 ├── 📁 99.临时杂物间/            # 草稿笔记
 ├── 📁 picture/                  # 图片资源
+├── 📁 readme/                   # 多语言 README
 ├── 📁 .claude/                  # Claude Code 配置
 └── 📄 CLAUDE.md                 # AI 辅助配置
 ```
 
-### 🚀 快速开始
+## 🚀 快速开始
 
 ```bash
 # 克隆仓库
@@ -92,101 +85,21 @@ git clone git@github.com:xixishuibubao/obsidian_CPP.git
 git pull origin main
 ```
 
-</div>
+## 📜 Git 工作流
 
-<br>
+本项目遵循 [Conventional Commits](https://www.conventionalcommits.org/) 规范：
 
----
+| 类型       | 用途           |
+|------------|----------------|
+| `feat`     | 新增内容/功能   |
+| `fix`      | 修复错误       |
+| `docs`     | 文档类变更     |
+| `style`    | 格式、命名规范  |
+| `refactor` | 结构调整       |
+| `chore`    | 工具配置       |
 
-<br>
+本地提交在推送前会合并整理，保持远端提交历史清晰。
 
-<div id="en">
-
-## 🇬🇧 English
-
-### 📖 About
-
-This repository is a **personal study notes knowledge base** focused on C/C++ systems programming, Linux environment, computer architecture, and related engineering topics. All notes are written in **Markdown** and managed via **Obsidian**.
-
-> 🎯 **Goal**: Build a searchable, reviewable systems programming knowledge system covering the full spectrum from low-level principles to engineering practices.
-
-### ✨ Features
-
-| 🖥️ **C/C++** | 🐧 **Linux Env** | ⚙️ **Architecture** |
-|:---:|:---:|:---:|
-| Grammar · Templates · Coding Standards · Project Structure | Vim · g++/gdb · Makefile · Shared/Static Libs | ARM32/64 · X86 ASM · Memory Model |
-
-| 🛠️ **Dev Tools** | 🌐 **Networking** | 📱 **Embedded MCU** |
-|:---:|:---:|:---:|
-| CLion · VS2022 · MobaXterm · CMake | Muduo Library · Server Projects | Boot-App Mode · UART Communication |
-
-| 🗄️ **Database** | 📝 **Book Notes** | 🎯 **More Topics** |
-|:---:|:---:|:---:|
-| SQL Grammar | More Effective C++ · Open Source Analysis | GC Algorithms · Profiling · Architecture Design |
-
-### 📂 Directory Layout
-
-```
-📦 obsidian_files
-├── 📁 00.Golang/               # Go basics
-├── 📁 01.C语法与技巧/           # C language · low-level · system programming
-├── 📁 02.C++语法与要点/         # C++ basics · code standards · project structure
-├── 📁 03.Linux环境与工具/       # Vim · g++ · gdb · Makefile · commands
-├── 📁 04.架构体系/              # ARM vs X86 · ASM fundamentals
-├── 📁 05.Win工具/               # MobaXterm · CLion · VS2022
-├── 📁 06.Linux开发/             # RK3588 · Yocto builds
-├── 📁 08.GUI与Qt/               # Qt framework
-├── 📁 09.读书笔记/              # More Effective C++ etc.
-├── 📁 10.辅助语言/              # Shell · Lua · Python · CMake · PlantUML
-├── 📁 11.MCU嵌入式/             # MCU development
-├── 📁 12.版本管理/              # Git guide · commit conventions
-├── 📁 14.技术杂谈/              # Loading & hooking techniques
-├── 📁 15.内存管理/              # GC algorithms
-├── 📁 17.网络编程/              # Muduo network library
-├── 📁 20.模板操作/              # C++ template metaprogramming
-├── 📁 22.调试与优化/            # Perf analysis · performance tools
-├── 📁 24.开源学习/              # Open-source project analysis
-├── 📁 25.架构设计/              # PIMPL · CLI design
-├── 📁 99.临时杂物间/            # Scratch notes
-└── 📁 picture/                  # Image assets
-```
-
-### 🚀 Getting Started
-
-```bash
-# Clone the repo
-git clone git@github.com:xixishuibubao/obsidian_CPP.git
-
-# Open as Obsidian vault
-# Obsidian → Open another vault → Select this directory
-
-# Pull latest changes
-git pull origin main
-```
-
-</div>
-
-<br>
-
----
-
-<br>
-
-## 📜 Git Workflow
-
-This repository follows [Conventional Commits](https://www.conventionalcommits.org/) for commit messages:
-
-| Type       | Usage                  |
-|------------|------------------------|
-| `feat`     | New content / feature  |
-| `fix`      | Bug / error fix        |
-| `docs`     | Documentation          |
-| `style`    | Formatting, naming     |
-| `refactor` | Restructuring          |
-| `chore`    | Tooling, config        |
-
-Commits are squashed before pushing to remote to maintain a clean history.
-
-## 📄 License
+## 📄 许可证
 
 MIT © xixishuibubao77
