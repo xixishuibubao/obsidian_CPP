@@ -53,12 +53,12 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 ├── 📁 06.Linux开发/             # RK3588 · Yocto builds
 ├── 📁 08.GUI与Qt/               # Qt framework
 ├── 📁 09.读书笔记/              # More Effective C++ etc.
-├── 📁 10.辅助语言/              # Shell · Lua · Python · CMake · PlantUML
-├── 📁 11.MCU嵌入式/             # MCU development
+├── 📁 10.辅助语言/              # Scripting/markup/modeling languages + English vocab
+├── 📁 11.MCU嵌入式/             # MCU development · ARM32 memory injection
 ├── 📁 12.版本管理/              # Git guide · commit conventions
 ├── 📁 14.技术杂谈/              # Loading & hooking techniques
 ├── 📁 15.内存管理/              # GC algorithms
-├── 📁 17.网络编程/              # Muduo network library
+├── 📁 17.网络编程/              # Muduo · IO models · Socket programming
 ├── 📁 20.模板操作/              # C++ template metaprogramming
 ├── 📁 22.调试与优化/            # Perf analysis · performance tools
 ├── 📁 24.开源学习/              # Open-source project analysis
