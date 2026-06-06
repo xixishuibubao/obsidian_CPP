@@ -38,7 +38,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🗄️ **Database** | 📝 **Book Notes** | 🎯 **More Topics** |
 |:---:|:---:|:---:|
-| SQL Grammar | More Effective C++ · Open Source Analysis | GC · Profiling (6) · Architecture (5) · Concurrency |
+| SQL Grammar | C++ Best Practices · Open Source Analysis | GC · Profiling (8) · Architecture (5) · Concurrency |
 
 ## 📂 Directory Layout
 
@@ -46,21 +46,21 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 📦 obsidian_files
 ├── 📁 A-编程语言/              # Languages
 │   ├── 📁 01.C语言/           # C · low-level · system programming
-│   ├── 📁 02.C++/             # C++ syntax · standards · templates
+│   ├── 📁 02.C++/             # C++ syntax · standards · templates · More Effective C++
 │   └── 📁 03.Golang/          # Go basics
 ├── 📁 B-构建与脚本/            # Build & scripting
-│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake
+│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python
 ├── 📁 C-Linux生态/             # Linux ecosystem
-│   ├── 📁 01.Linux环境/        # vim · commands · libs · rpath
+│   ├── 📁 01.Linux环境/        # vim · commands · dynamic libs · rpath · dlopen/hijack
 │   ├── 📁 02.Linux系统编程/     # processes · kernel · drivers
 │   ├── 📁 03.Linux开发/        # RK3588 · Yocto · cross compilation
-│   ├── 📁 04.调试与优化/       # gdb · perf · file IO · branch opt
+│   ├── 📁 04.调试与优化/       # gdb · coredump · perf · file IO · branch opt
 │   ├── 📁 05.网络编程/         # Muduo · IO models
 │   └── 📁 06.开源项目分析/     # Muduo/LevelDB/Redis/Nginx
 ├── 📁 D-系统与架构/            # Systems & architecture
 │   ├── 📁 01.架构体系/         # ARM vs X86
-│   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology
+│   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology · plugin architecture
 │   ├── 📁 03.并发与内存/       # GC · atomic · threads & async
 │   └── 📁 04.MCU嵌入式/        # MCU · ARM32 memory injection
 ├── 📁 E-杂项/                 # Tools & misc
