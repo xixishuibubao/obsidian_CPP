@@ -41,7 +41,7 @@ Images referenced by notes live in `/picture/`.
 2. **Commit 信息用 Conventional Commits 格式**
 3. **笔记使用标准 Markdown**，无 YAML frontmatter，无 tags
 4. **优先用 Git Bash**，乱码时回退 PowerShell
-5. **CLAUDE.md 行数自管理**：根目录 CLAUDE.md 超过约 60 行时，将详细说明拆分至 `.claude/instructions/` 子文件，根文件始终保持全局指导的简洁性
+5. **CLAUDE.md 行数自管理**：根目录 CLAUDE.md 超过约 120 行时，将详细说明拆分至 `.claude/instructions/` 子文件，根文件始终保持全局指导的简洁性
 
 ## Detailed References
 
