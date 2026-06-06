@@ -36,27 +36,63 @@ Images referenced by notes live in `/picture/`.
   ```
 - Check repo state: `git status` / `git log --oneline -5`
 
-### Useful Commands
+### Sync via Obsidian-Git (日常同步)
+Vault 通过 [obsidian-git](https://github.com/Vinzent03/obsidian-git) 插件同步。插件设置中的 `Custom Git binary path` 必须指向 `git.exe`（非 `git-bash.exe`）。
 
 ```bash
-# 近期变更概览
+# 标准同步流程（在 Obsidian 内执行）：
+# 1. Ctrl+P → "Obsidian Git: Create backup" 自动 commit + push
+# 2. 或手动操作：先 pull → 处理冲突 → commit → push
+
+# 拉取远端变更（如先在另一台设备写了笔记）
+git pull --rebase origin main
+
+# 如果 pull 有冲突：
+# 1. 查看冲突文件
+git diff --name-only --diff-filter=U
+# 2. 手动编辑冲突文件（搜索 <<<<<<< 标记），保留需要的版本
+# 3. 标记已解决并提交
+git add <冲突文件>
+git commit -m "fix(vault): resolve merge conflict in <文件名>"
+
+# 紧急回退：如果同步后 vault 状态异常，回退到上一个已知良好状态
+git reflog                  # 查看操作历史
+git reset --hard HEAD@{N}   # 回退到指定位置（注意：会丢失之后的所有本地变更）
+```
+
+> ⚠️ Pull 前确保所有本地变更已 commit。如果有未 commit 的修改导致 pull 失败，先 `git stash` 暂存，pull 后再 `git stash pop`。
+
+### Useful Commands
+
+Commands grouped by task. All paths relative to vault root.
+
+#### 📋 统计与概况
+```bash
+# 近期变更
 git log --oneline --name-status -10
 
+# 各子目录笔记数量
+for d in A-*/ B-*/ C-*/ D-*/ E-*/; do count=$(ls "$d"*.md 2>/dev/null | wc -l); [ "$count" -gt 0 ] && echo "${d%/} → $count 篇"; done
+
 # 查看某目录下有哪些笔记
-ls -1 03.Linux环境与工具/
+ls -1 C-Linux生态/01.Linux环境/
+```
 
-# 检查所有笔记标题是否以 "# 1." 开头（排除目录和配置文件）
+#### ✅ 完整性检查
+```bash
+# 一键检查：标题格式 + 图片引用 + wikilink 断裂
+echo "=== 标题格式检查 ===" && grep -rn '^# \d' --include='*.md' . | grep -v '\.git/' | grep -v '\.claude/' | grep -v 'README' | grep -v '99\.' && echo "" && echo "=== 图片引用检查 ===" && grep -roP '\!\[.*?\]\(picture/[^)]+\)' . --include='*.md' | grep -v '\.git/' && echo "" && echo "=== Wikilink 检查 ===" && grep -roP '\[\[.+?\]\]' . --include='*.md' | grep -v '\.git/' | sort -u
+
+# 逐一检查（分开执行看详情）：
+# 标题格式
 grep -rn '^# \d' --include='*.md' . | grep -v '\.git/' | grep -v '\.claude/' | grep -v 'README' | grep -v '99\.'
-
-# 统计各目录笔记数量
-for d in [0-9]*/; do count=$(ls "$d"*.md 2>/dev/null | wc -l); [ "$count" -gt 0 ] && echo "$d → $count 篇"; done
-
-# 查找无效的图片引用（标记引用但文件不存在）
+# 无效图片引用（标记引用但文件不存在）
 grep -roP '\!\[.*?\]\(picture/[^)]+\)' . --include='*.md' | grep -v '\.git/'
-
-# 查找可能断链的 wikilinks（未匹配文件名）
+# 可能断链的 wikilinks（未匹配文件名）
 grep -roP '\[\[.+?\]\]' . --include='*.md' | grep -v '\.git/' | sort -u
 ```
+
+> 💡 一键检查的可视化版本：将其保存为脚本（如 `scripts/health-check.sh`），添加颜色输出和通过/失败统计。需要的话我可以帮你创建。
 
 ## Directory Structure
 
