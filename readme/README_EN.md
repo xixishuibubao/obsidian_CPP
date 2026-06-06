@@ -44,33 +44,31 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 ```
 📦 obsidian_files
-├── 📁 00.Golang/               # Go basics
-├── 📁 01.C语法与技巧/           # C language · low-level · system programming
-├── 📁 02.C++语法与要点/         # C++ basics · code standards · project structure
-├── 📁 03.Linux环境与工具/       # Vim · g++ · gdb · Makefile · process mgmt · kernel modules（largest, 15 notes）
-├── 📁 04.架构体系/              # ARM vs X86 · ASM fundamentals
-├── 📁 05.Win工具/               # MobaXterm · CLion · VS2022
-├── 📁 06.Linux开发/             # RK3588 · Yocto builds · cross compilation
-├── 📁 07.数据库与SQL语法/       # 🚧 WIP
-├── 📁 08.GUI与Qt/               # Qt framework notes
-├── 📁 09.读书笔记/              # More Effective C++ etc.
-├── 📁 10.辅助语言/              # Scripting(Shell/Lua/CMake) · markup/modeling · English vocab
-├── 📁 11.MCU嵌入式/             # MCU dev · ARM32 memory injection
-├── 📁 12.版本管理/              # Git guide · commit conventions
-├── 📁 13.通讯协议/              # 🚧 WIP
-├── 📁 14.技术杂谈/              # Hooking · plugin architecture
-├── 📁 15.内存管理/              # GC algorithms
-├── 📁 16.数据结构与算法/        # 🚧 WIP
-├── 📁 17.网络编程/              # Muduo · IO models · Socket programming
-├── 📁 18.并发与多线程/          # atomic memory ordering · threads & async
-├── 📁 19.异常处理/              # 🚧 WIP
-├── 📁 20.模板操作/              # C++ template metaprogramming
-├── 📁 21.文件操作/              # 🚧 WIP
-├── 📁 22.调试与优化/            # Perf · tuning · file IO · branch optimization（6 notes）
-├── 📁 23.测试框架/              # 🚧 WIP
-├── 📁 24.开源学习/              # Open-source analysis（Muduo/LevelDB/Redis/Nginx）
-├── 📁 25.架构设计/              # PIMPL · CLI · build scripts · Skill methodology（5 notes）
-├── 📁 99.临时杂物间/            # Scratch notes
+├── 📁 A-编程语言/              # Languages
+│   ├── 📁 01.C语言/           # C · low-level · system programming
+│   ├── 📁 02.C++/             # C++ syntax · standards · templates
+│   └── 📁 03.Golang/          # Go basics
+├── 📁 B-构建与脚本/            # Build & scripting
+│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake
+│   └── 📁 02.脚本语言/         # Shell · Lua · Python
+├── 📁 C-Linux生态/             # Linux ecosystem
+│   ├── 📁 01.Linux环境/        # vim · commands · libs · rpath
+│   ├── 📁 02.Linux系统编程/     # processes · kernel · drivers
+│   ├── 📁 03.Linux开发/        # RK3588 · Yocto · cross compilation
+│   ├── 📁 04.调试与优化/       # gdb · perf · file IO · branch opt
+│   ├── 📁 05.网络编程/         # Muduo · IO models
+│   └── 📁 06.开源项目分析/     # Muduo/LevelDB/Redis/Nginx
+├── 📁 D-系统与架构/            # Systems & architecture
+│   ├── 📁 01.架构体系/         # ARM vs X86
+│   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology
+│   ├── 📁 03.并发与内存/       # GC · atomic · threads & async
+│   └── 📁 04.MCU嵌入式/        # MCU · ARM32 memory injection
+├── 📁 E-杂项/                 # Tools & misc
+│   ├── 📁 01.开发工具/         # MobaXterm · CLion · VS2022 · Qt
+│   ├── 📁 02.版本管理/         # Git · log conventions
+│   ├── 📁 03.数据库/           # 🚧 WIP
+│   ├── 📁 04.语言与标记/       # Markdown · XML · CSS · PlantUML · English
+│   └── 📁 05.杂项/             # Book notes · Hooking/plugins
 ├── 📁 picture/                  # Image assets
 ├── 📁 readme/                   # Multi-language README
 ├── 📁 .claude/                  # Claude Code config

@@ -6,7 +6,8 @@
       "PowerShell(Get-ChildItem -Recurse -Depth 3 -File | Where-Object { $_.Extension -in '.md', '.png', '.jpg', '.jpeg', '.gif' } | Select-Object FullName)",
       "PowerShell(if \\(-not \\(Test-Path \"$env:USERPROFILE\\\\.claude\\\\skills\"\\)\\) { New-Item -ItemType Directory \"$env:USERPROFILE\\\\.claude\\\\skills\" -Force })",
       "PowerShell(cd C:\\\\Users\\\\AS\\\\Desktop\\\\obsidian_files; $emptyDirs = @\\(\"07.数据库与SQL语法\",\"13.通讯协议\",\"16.数据结构与算法\",\"19.异常处理\",\"21.文件操作\",\"23.测试框架\"\\); foreach \\($d in $emptyDirs\\) { $gitkeep = \"$d/.gitkeep\"; if \\(Test-Path $gitkeep\\) { git rm $gitkeep }; if \\(Test-Path $d\\) { Remove-Item $d -Recurse } })",
-      "PowerShell(cd C:\\\\Users\\\\AS\\\\Desktop\\\\obsidian_files; Write-Output \"=== 已存在的旧目录 ===\"; Get-ChildItem -Directory | Where-Object { $_.Name -match '^\\\\d' } | Select-Object -ExpandProperty Name; Write-Output \"=== 检查新目录内容 ===\"; Get-ChildItem \"E-杂项/01.开发工具\" -Name -File)"
+      "PowerShell(cd C:\\\\Users\\\\AS\\\\Desktop\\\\obsidian_files; Write-Output \"=== 已存在的旧目录 ===\"; Get-ChildItem -Directory | Where-Object { $_.Name -match '^\\\\d' } | Select-Object -ExpandProperty Name; Write-Output \"=== 检查新目录内容 ===\"; Get-ChildItem \"E-杂项/01.开发工具\" -Name -File)",
+      "PowerShell(cd C:\\\\Users\\\\AS\\\\Desktop\\\\obsidian_files; git status --short | Where-Object { $_ -match '^\\\\?' } | Select-Object -First 20)"
     ]
   }
 }
