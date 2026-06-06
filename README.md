@@ -69,7 +69,7 @@
 │   ├── 📁 02.版本管理/         # Git · log 规范
 │   ├── 📁 03.数据库/           # 🚧 施工中
 │   ├── 📁 04.语言与标记/       # Markdown · XML · CSS · PlantUML · 英语
-│   └── 📁 05.杂项/             # 读书笔记 · Hook/插件
+│   └── 📁 05.杂项/             # 🚧 暂空（内容已归入各模块）
 ├── 📁 picture/                  # 图片资源
 ├── 📁 readme/                   # 多语言 README
 ├── 📁 .claude/                  # Claude Code 配置

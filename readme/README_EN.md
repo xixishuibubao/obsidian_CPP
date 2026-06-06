@@ -68,7 +68,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 02.版本管理/         # Git · log conventions
 │   ├── 📁 03.数据库/           # 🚧 WIP
 │   ├── 📁 04.语言与标记/       # Markdown · XML · CSS · PlantUML · English
-│   └── 📁 05.杂项/             # Book notes · Hooking/plugins
+│   └── 📁 05.杂项/             # 🚧 Empty (content relocated to topic dirs)
 ├── 📁 picture/                  # Image assets
 ├── 📁 readme/                   # Multi-language README
 ├── 📁 .claude/                  # Claude Code config
