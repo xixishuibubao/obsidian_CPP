@@ -30,15 +30,15 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🖥️ **C/C++** | 🐧 **Linux Env** | ⚙️ **Architecture** |
 |:---:|:---:|:---:|
-| Grammar · Templates · Coding Standards · Project Structure | Vim · g++/gdb · Makefile · Shared/Static Libs | ARM32/64 · X86 ASM · Memory Model |
+| Grammar · Templates · Coding Standards · Project Structure | Vim · g++/gdb · Makefile · Kernel Modules | ARM32/64 · X86 ASM · Memory Model |
 
-| 🛠️ **Dev Tools** | 🌐 **Networking** | 📱 **Embedded MCU** |
+| 🛠️ **Dev Tools & Build** | 🌐 **Networking** | 📱 **Embedded MCU** |
 |:---:|:---:|:---:|
-| CLion · VS2022 · MobaXterm · CMake | Muduo Library · Server Projects | Boot-App Mode · UART Communication |
+| CLion · VS2022 · CMake (Beginner→Advanced) | Muduo Library · IO Models | Boot-App Mode · UART Memory Injection |
 
 | 🗄️ **Database** | 📝 **Book Notes** | 🎯 **More Topics** |
 |:---:|:---:|:---:|
-| SQL Grammar | More Effective C++ · Open Source Analysis | GC Algorithms · Profiling · Architecture Design |
+| SQL Grammar | More Effective C++ · Open Source Analysis | GC · Profiling (6) · Architecture (5) · Concurrency |
 
 ## 📂 Directory Layout
 
@@ -47,22 +47,29 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 ├── 📁 00.Golang/               # Go basics
 ├── 📁 01.C语法与技巧/           # C language · low-level · system programming
 ├── 📁 02.C++语法与要点/         # C++ basics · code standards · project structure
-├── 📁 03.Linux环境与工具/       # Vim · g++ · gdb · Makefile · commands
+├── 📁 03.Linux环境与工具/       # Vim · g++ · gdb · Makefile · process mgmt · kernel modules（largest, 15 notes）
 ├── 📁 04.架构体系/              # ARM vs X86 · ASM fundamentals
 ├── 📁 05.Win工具/               # MobaXterm · CLion · VS2022
-├── 📁 06.Linux开发/             # RK3588 · Yocto builds
-├── 📁 08.GUI与Qt/               # Qt framework
+├── 📁 06.Linux开发/             # RK3588 · Yocto builds · cross compilation
+├── 📁 07.数据库与SQL语法/       # 🚧 WIP
+├── 📁 08.GUI与Qt/               # Qt framework notes
 ├── 📁 09.读书笔记/              # More Effective C++ etc.
-├── 📁 10.辅助语言/              # Scripting/markup/modeling languages + English vocab
-├── 📁 11.MCU嵌入式/             # MCU development · ARM32 memory injection
+├── 📁 10.辅助语言/              # Scripting(Shell/Lua/CMake) · markup/modeling · English vocab
+├── 📁 11.MCU嵌入式/             # MCU dev · ARM32 memory injection
 ├── 📁 12.版本管理/              # Git guide · commit conventions
-├── 📁 14.技术杂谈/              # Loading & hooking techniques
+├── 📁 13.通讯协议/              # 🚧 WIP
+├── 📁 14.技术杂谈/              # Hooking · plugin architecture
 ├── 📁 15.内存管理/              # GC algorithms
+├── 📁 16.数据结构与算法/        # 🚧 WIP
 ├── 📁 17.网络编程/              # Muduo · IO models · Socket programming
+├── 📁 18.并发与多线程/          # atomic memory ordering · threads & async
+├── 📁 19.异常处理/              # 🚧 WIP
 ├── 📁 20.模板操作/              # C++ template metaprogramming
-├── 📁 22.调试与优化/            # Perf analysis · performance tools
-├── 📁 24.开源学习/              # Open-source project analysis
-├── 📁 25.架构设计/              # PIMPL · CLI design
+├── 📁 21.文件操作/              # 🚧 WIP
+├── 📁 22.调试与优化/            # Perf · tuning · file IO · branch optimization（6 notes）
+├── 📁 23.测试框架/              # 🚧 WIP
+├── 📁 24.开源学习/              # Open-source analysis（Muduo/LevelDB/Redis/Nginx）
+├── 📁 25.架构设计/              # PIMPL · CLI · build scripts · Skill methodology（5 notes）
 ├── 📁 99.临时杂物间/            # Scratch notes
 ├── 📁 picture/                  # Image assets
 ├── 📁 readme/                   # Multi-language README
