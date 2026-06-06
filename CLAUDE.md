@@ -133,11 +133,11 @@ E-杂项/
 ## Key Rules
 
 1. **每次改动后本地 commit，推远端前 squash** — 保持远端 log 清晰
-2. **Commit 信息用 Conventional Commits 格式**
+2. **Commit 信息用 Conventional Commits 格式，log内容优先用简体中文**
 3. **笔记使用标准 Markdown**，无 YAML frontmatter，无 tags
-4. **优先用 Git Bash**，乱码时回退 PowerShell
+4. **终端优先用Bash**，乱码时回退 PowerShell
 5. **目录变更后运行 `.gitkeep` hook**：`powershell .git\hooks\auto-gitkeep.ps1` — 自动创建/删除 `.gitkeep`
-6. **CLAUDE.md 行数自管理**：根目录 CLAUDE.md 超过约 120 行时，将详细说明拆分至 `.claude/instructions/` 子文件，根文件始终保持全局指导的简洁性
+6. **CLAUDE.md 行数自管理**：根目录 CLAUDE.md 超过约 150 行时，将详细说明拆分至 `.claude/instructions/` 子文件，根文件始终保持全局指导的简洁性
 
 ## Detailed References
 
