@@ -20,6 +20,22 @@ Images referenced by notes live in `/picture/`.
 | **图片引用** | `![描述](picture/文件名.png)` |
 | **空目录占位** | 使用 `.gitkeep` 文件占位 |
 
+## Common Workflows
+
+### Create a New Note
+1. **Place** in the appropriate directory (e.g., `03.Linux环境与工具/`)
+2. **Name** as `N. Title.md` — N is the next available sort number; internal title always starts at `# 1.`
+3. **Content** follows sub-file [02-note-conventions.md](.claude/instructions/02-note-conventions.md): fenced code blocks + language annotation, wikilinks to related notes, bilingual (English terms + Chinese explanation)
+4. **Images** go to `picture/` as `{section}-{seq}.png` (e.g., `3-1.png`); reference as `![desc](picture/file.png)` always lowercase `.png`
+5. **Commit** with `docs(directory): what changed`
+
+### Maintain Directories
+- After creating/removing a directory, run the `.gitkeep` hook to sync empty-dir tracking:
+  ```powershell
+  powershell .git\hooks\auto-gitkeep.ps1
+  ```
+- Check repo state: `git status` / `git log --oneline -5`
+
 ## Directory Structure
 
 | 目录 | 主题 | 目录 | 主题 |
@@ -41,7 +57,8 @@ Images referenced by notes live in `/picture/`.
 2. **Commit 信息用 Conventional Commits 格式**
 3. **笔记使用标准 Markdown**，无 YAML frontmatter，无 tags
 4. **优先用 Git Bash**，乱码时回退 PowerShell
-5. **CLAUDE.md 行数自管理**：根目录 CLAUDE.md 超过约 120 行时，将详细说明拆分至 `.claude/instructions/` 子文件，根文件始终保持全局指导的简洁性
+5. **目录变更后运行 `.gitkeep` hook**：`powershell .git\hooks\auto-gitkeep.ps1` — 自动创建/删除 `.gitkeep`
+6. **CLAUDE.md 行数自管理**：根目录 CLAUDE.md 超过约 120 行时，将详细说明拆分至 `.claude/instructions/` 子文件，根文件始终保持全局指导的简洁性
 
 ## Detailed References
 
