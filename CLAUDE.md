@@ -93,6 +93,8 @@ grep -roP '\[\[.+?\]\]' . --include='*.md' | grep -v '\.git/' | sort -u
 ```
 
 > 💡 一键检查的可视化版本：将其保存为脚本（如 `scripts/health-check.sh`），添加颜色输出和通过/失败统计。需要的话我可以帮你创建。
+>
+> ⚠️ wikilink 检查会误匹配 shell 代码块中的 `[[ ]]` 条件，参见 [02-note-conventions.md](.claude/instructions/02-note-conventions.md#链接完整性检查) 中的精确过滤命令。
 
 ## Directory Structure
 
