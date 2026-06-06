@@ -8,54 +8,49 @@ An **Obsidian vault** containing personal study notes on C/C++, systems programm
 
 This is **not a code project** — there are no build systems, no tests, and no compilable source. It is a knowledge base for reference and review.
 
-## Repository Structure
-
-Top-level directories are numbered by topic area:
-
-| Directory | Topic |
-|-----------|-------|
-| `00.Golang/` | Go language basics |
-| `01.C语法与技巧/` | C language and techniques |
-| `02.C++语法与要点/` | C++ grammar, style, project structure |
-| `03.Linux环境与工具/` | Vim, g++, gdb, makefile, shared/static libs |
-| `04.架构体系/` | ARM vs x86 architecture |
-| `05.Win工具/` | MobaXterm, CLion, VS2022 |
-| `06.Linux开发/` | RK3588 board, Yocto builds |
-| `07.数据库与SQL语法/` | Database and SQL (placeholder) |
-| `08.GUI与Qt/` | Qt framework notes |
-| `09.读书笔记/` | Book notes (e.g., More Effective C++) |
-| `10.辅助语言/` | Shell, Lua, Python, CMake; markup languages; PlantUML |
-| `11.MCU嵌入式/` | Microcontroller development |
-| `12.版本管理/` | Git usage and commit log conventions |
-| `13.通讯协议/` | Communication protocols (placeholder) |
-| `14.技术杂谈/` | Loading and hooking techniques |
-| `15.内存管理/` | GC and memory management algorithms |
-| `16.数据结构与算法/` | Data structures and algorithms (placeholder) |
-| `17.网络编程/` | Muduo network library, server projects |
-| `18.并发与多线程/` | Concurrency and multithreading (placeholder) |
-| `19.异常处理/` | Exception handling (placeholder) |
-| `20.模板操作/` | C++ templates |
-| `21.文件操作/` | File I/O operations (placeholder) |
-| `22.调试与优化/` | Profiling with perf, performance tools |
-| `23.测试框架/` | Testing frameworks (placeholder) |
-| `24.开源学习/` | Open-source project analysis |
-| `25.架构设计/` | PIMPL idiom, structured design, CLI design |
-| `99.临时杂物间/` | Scratch/draft notes |
-
 Images referenced by notes live in `/picture/`.
 
-## Git & Obsidian Workflow
+## Quick Reference
 
-- **Primary sync method**: The [obsidian-git](https://github.com/Vinzent03/obsidian-git) plugin commits and pushes from within Obsidian. The plugin's `Custom Git binary path` setting must point to `git.exe` (not `git-bash.exe`).
-- **Empty directories**: Tracked via `.gitkeep` files, managed manually (no pre-commit hook). Redundant `.gitkeep` files (in directories that now have content) should be removed with `git rm`.
-- **Commit message format**: Must follow [Conventional Commits](https://www.conventionalcommits.org/) — use `type(scope): description` structure. Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`, `build`. See `12.版本管理/2. log规范.md` for full details.
-- **Vault backup commits**: The obsidian-git plugin may create auto-backup commits with meaningless messages. These should be squashed/fixup'd into the preceding meaningful commit via `git rebase -i`.
-- **.gitignore**: Ignores `.obsidian/*` (with exceptions for plugin/themes config), large files, temp files, and editor artifacts.
+| 项目 | 规则 |
+|------|------|
+| **Commit 格式** | `type(scope): 描述` — Conventional Commits |
+| **终端首选** | Git Bash (Windows)，乱码时回退 PowerShell |
+| **笔记引用** | Obsidian wikilink `[[文件名\|显示文字]]` |
+| **标题格式** | `# 1.`, `## 1.1`, `### 1.1.1` 数字编号 |
+| **Frontmatter** | 不使用 YAML frontmatter 或 tags |
+| **图片引用** | `![描述](picture/文件名.png)` |
 
-## Note Conventions
+## Directory Structure
 
-- Written in **Chinese and English** — technical terms in English, explanations primarily in Chinese.
-- Images embedded via `![description](picture/filename.png)`.
-- Code snippets use standard markdown fenced blocks.
-- When cross-publishing to Feishu / WeChat Official Account, use [markdown.lovejade.cn](https://markdown.lovejade.cn/) for format conversion (select "公众号" mode).
-- **File naming**: `数字. 空格 + 名称` (e.g., `1. C++基础.md`, `2. 代码规范.md`). Both directories and files follow this convention.
+| 目录 | 主题 | 目录 | 主题 |
+|------|------|------|------|
+| `00.Golang/` | Go 基础 | `13.通讯协议/` | (空) |
+| `01.C语法与技巧/` | C 语言 | `14.技术杂谈/` | Hook 技术 |
+| `02.C++语法与要点/` | C++ 语法 | `15.内存管理/` | GC 算法 |
+| `03.Linux环境与工具/` | Vim/g++/gdb | `17.网络编程/` | Muduo |
+| `04.架构体系/` | ARM vs X86 | `20.模板操作/` | C++ 模板 |
+| `05.Win工具/` | MobaXterm/CLion | `22.调试与优化/` | Perf |
+| `06.Linux开发/` | RK3588/Yocto | `24.开源学习/` | 项目分析 |
+| `08.GUI与Qt/` | Qt | `25.架构设计/` | PIMPL/CLI |
+| `09.读书笔记/` | More Effective C++ | `99.临时杂物间/` | 草稿 |
+| `10.辅助语言/` | Shell/Markdown/PlantUML | | |
+| `11.MCU嵌入式/` | MCU 开发 | | |
+| `12.版本管理/` | Git 操作 | | |
+
+## Key Rules
+
+1. **每次改动后本地 commit，推远端前 squash** — 保持远端 log 清晰
+2. **Commit 信息用 Conventional Commits 格式**
+3. **笔记使用标准 Markdown**，无 YAML frontmatter，无 tags
+4. **优先用 Git Bash**，乱码时回退 PowerShell
+5. **CLAUDE.md 行数自管理**：根目录 CLAUDE.md 超过约 60 行时，将详细说明拆分至 `.claude/instructions/` 子文件，根文件始终保持全局指导的简洁性
+
+## Detailed References
+
+See `.claude/instructions/` for full documentation:
+
+- [01-repo-structure.md](.claude/instructions/01-repo-structure.md) — 完整目录结构与说明
+- [02-note-conventions.md](.claude/instructions/02-note-conventions.md) — 笔记内容规范、wikilink、标题编号、代码块
+- [03-git-workflow.md](.claude/instructions/03-git-workflow.md) — Git 工作流、commit 格式、squash 策略
+- [04-shell-config.md](.claude/instructions/04-shell-config.md) — Shell 终端配置与编码处理
