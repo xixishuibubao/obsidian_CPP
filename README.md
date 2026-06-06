@@ -10,13 +10,22 @@
   <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white" alt="C++"/>
   <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black" alt="Linux"/>
   <img src="https://img.shields.io/badge/ARM-0091BD?style=flat-square&logo=arm&logoColor=white" alt="ARM"/>
-  <img src="https://img.shields.io/badge/X86-0071C5?style=flat-square&logo=intel&logoColor=white" alt="X86"/>
   <img src="https://img.shields.io/badge/CMake-064F8C?style=flat-square&logo=cmake&logoColor=white" alt="CMake"/>
   <img src="https://img.shields.io/badge/Obsidian-7C3AED?style=flat-square&logo=obsidian&logoColor=white" alt="Obsidian"/>
   <img src="https://img.shields.io/badge/Markdown-000000?style=flat-square&logo=markdown&logoColor=white" alt="Markdown"/>
 </p>
 
+<p align="center">
+  <a href="#cn"><img src="https://img.shields.io/badge/🇨🇳-中文-red?style=for-the-badge&labelColor=red&color=white" alt="中文"/></a>
+  &nbsp;&nbsp;
+  <a href="#en"><img src="https://img.shields.io/badge/🇬🇧-English-blue?style=for-the-badge&labelColor=blue&color=white" alt="English"/></a>
+</p>
+
 ---
+
+<br>
+
+<div id="cn">
 
 ## 🇨🇳 中文
 
@@ -83,7 +92,15 @@ git clone git@github.com:xixishuibubao/obsidian_CPP.git
 git pull origin main
 ```
 
+</div>
+
+<br>
+
 ---
+
+<br>
+
+<div id="en">
 
 ## 🇬🇧 English
 
@@ -147,20 +164,26 @@ git clone git@github.com:xixishuibubao/obsidian_CPP.git
 git pull origin main
 ```
 
+</div>
+
+<br>
+
 ---
+
+<br>
 
 ## 📜 Git Workflow
 
 This repository follows [Conventional Commits](https://www.conventionalcommits.org/) for commit messages:
 
-| Type     | Usage                |
-|----------|----------------------|
-| `feat`   | New content / feature |
-| `fix`    | Bug / error fix      |
-| `docs`   | Documentation        |
-| `style`  | Formatting, naming   |
-| `refactor` | Restructuring      |
-| `chore`  | Tooling, config      |
+| Type       | Usage                  |
+|------------|------------------------|
+| `feat`     | New content / feature  |
+| `fix`      | Bug / error fix        |
+| `docs`     | Documentation          |
+| `style`    | Formatting, naming     |
+| `refactor` | Restructuring          |
+| `chore`    | Tooling, config        |
 
 Commits are squashed before pushing to remote to maintain a clean history.
 
