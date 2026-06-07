@@ -12,6 +12,8 @@
 <type>(<scope>): <description>
 ```
 
+> **description 默认使用简体中文**，`type(scope):` 头部保持英文。中文项目优先中文 log。
+
 ### 常用类型
 
 | 类型 | 用途 |
