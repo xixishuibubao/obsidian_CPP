@@ -63,7 +63,12 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology · plugin architecture
 │   ├── 📁 03.并发与内存/       # GC · atomic · threads & async
 │   └── 📁 04.MCU嵌入式/        # MCU · ARM32 memory injection
-├── 📁 E-杂项/                 # Tools & misc
+├── 📁 E-AI与Agent协同开发/     # AI-assisted development
+│   ├── 📁 01.基础概念/         # 🚧 TBD
+│   ├── 📁 02.工作流与方法论/   # Vibecoding · Agent workflows
+│   ├── 📁 03.工具与配置/       # 🚧 TBD
+│   └── 📁 04.最佳实践/         # 🚧 TBD
+├── 📁 F-杂项/                 # Tools & misc
 │   ├── 📁 01.开发工具/         # MobaXterm · CLion · VS2022 · Qt
 │   ├── 📁 02.版本管理/         # Git · log conventions
 │   ├── 📁 03.数据库/           # 🚧 WIP

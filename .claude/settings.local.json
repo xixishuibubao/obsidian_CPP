@@ -3,7 +3,7 @@
     "allow": [
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "PowerShell(git diff *)"
+      "Bash(git diff *)"
     ]
   }
 }

@@ -80,10 +80,10 @@ All paths relative to vault root.
 git log --oneline --name-status -10
 
 # 各模块笔记数（Bash）
-for d in A-*/ B-*/ C-*/ D-*/ E-*/; do count=$(ls "$d"*.md 2>/dev/null | wc -l); [ "$count" -gt 0 ] && echo "${d%/} → $count 篇"; done
+for d in A-*/ B-*/ C-*/ D-*/ E-*/ F-*/; do count=$(ls "$d"*.md 2>/dev/null | wc -l); [ "$count" -gt 0 ] && echo "${d%/} → $count 篇"; done
 
 # 各模块笔记数（PowerShell）
-@("A-编程语言","B-构建与脚本","C-Linux生态","D-系统与架构","E-杂项") | % { $c = (Get-ChildItem "$_\*.md" -Recurse -File | Measure-Object).Count; "$_ → $c 篇" }
+@("A-编程语言","B-构建与脚本","C-Linux生态","D-系统与架构","E-AI与Agent协同开发","F-杂项") | % { $c = (Get-ChildItem "$_\*.md" -Recurse -File | Measure-Object).Count; "$_ → $c 篇" }
 ```
 
 ### ✅ 完整性检查
@@ -111,7 +111,8 @@ A-编程语言/          ← C · C++ · Golang
 B-构建与脚本/        ← g++ · Makefile · CMake · Shell · Lua · Python
 C-Linux生态/         ← Linux 环境 · 系统编程 · 开发 · 调试优化 · 网络 · 开源分析
 D-系统与架构/        ← 汇编 · 架构设计 · 并发/内存 · MCU
-E-杂项/             ← 开发工具 · Git · 语言/标记 · （数据库 🚧 占位）
+E-AI与Agent协同开发/  ← AI 辅助编程 · 工作流 · Agent 方法论
+F-杂项/             ← 开发工具 · Git · 语言/标记 · （数据库 🚧 占位）
 ```
 
 ~69 篇笔记，完整结构与计数见 [01-repo-structure.md](.claude/instructions/01-repo-structure.md)。

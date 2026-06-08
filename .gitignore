@@ -1,5 +1,6 @@
 .obsidian/*
 modify.md
+.claude/settings.local.json
 # 例外：保留需要同步的插件内容（按需开启）
 #!.obsidian/snippets/
 #!.obsidian/templates/
