@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/CMake-064F8C?style=flat-square&logo=cmake&logoColor=white" alt="CMake"/>
   <img src="https://img.shields.io/badge/Obsidian-7C3AED?style=flat-square&logo=obsidian&logoColor=white" alt="Obsidian"/>
   <img src="https://img.shields.io/badge/Markdown-000000?style=flat-square&logo=markdown&logoColor=white" alt="Markdown"/>
+  <img src="https://img.shields.io/badge/AI%20Agent-412991?style=flat-square&logo=openai&logoColor=white" alt="AI Agent"/>
 </p>
 
 <p align="center">
@@ -36,9 +37,9 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 |:---:|:---:|:---:|
 | CLion · VS2022 · CMake (Beginner→Advanced) | Muduo Library · IO Models | Boot-App Mode · UART Memory Injection |
 
-| 🗄️ **Database** | 📝 **Book Notes** | 🎯 **More Topics** |
+| 🤖 **AI-Assisted Dev** | 📝 **Book Notes** | 🎯 **More Topics** |
 |:---:|:---:|:---:|
-| SQL Grammar | C++ Best Practices · Open Source Analysis | GC · Profiling (8) · Architecture (5) · Concurrency |
+| Paradigm Evolution · Vibecoding · Agent Workflows | C++ Best Practices · Open Source Analysis | GC · Profiling (8) · Architecture (5) · Concurrency |
 
 ## 📂 Directory Layout
 
@@ -64,8 +65,8 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 03.并发与内存/       # GC · atomic · threads & async
 │   └── 📁 04.MCU嵌入式/        # MCU · ARM32 memory injection
 ├── 📁 E-AI与Agent协同开发/     # AI-assisted development
-│   ├── 📁 01.基础概念/         # 🚧 TBD
-│   ├── 📁 02.工作流与方法论/   # Vibecoding · Agent workflows
+│   ├── 📁 01.基础概念/         # Paradigm evolution
+│   ├── 📁 02.工作流与方法论/   # Vibecoding · Super Programmer roadmap
 │   ├── 📁 03.工具与配置/       # 🚧 TBD
 │   └── 📁 04.最佳实践/         # 🚧 TBD
 ├── 📁 F-杂项/                 # Tools & misc

@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/CMake-064F8C?style=flat-square&logo=cmake&logoColor=white" alt="CMake"/>
   <img src="https://img.shields.io/badge/Obsidian-7C3AED?style=flat-square&logo=obsidian&logoColor=white" alt="Obsidian"/>
   <img src="https://img.shields.io/badge/Markdown-000000?style=flat-square&logo=markdown&logoColor=white" alt="Markdown"/>
+  <img src="https://img.shields.io/badge/AI%20Agent-412991?style=flat-square&logo=openai&logoColor=white" alt="AI Agent"/>
 </p>
 
 <p align="center">
@@ -37,9 +38,9 @@
 |:---:|:---:|:---:|
 | CLion · VS2022 · CMake 入门/进阶 | Muduo 网络库 · IO 模型 | Boot-App 模式 · UART 内存注入 |
 
-| 🗄️ **数据库** | 📝 **读书笔记** | 🎯 **更多专题** |
+| 🤖 **AI 辅助开发** | 📝 **读书笔记** | 🎯 **更多专题** |
 |:---:|:---:|:---:|
-| SQL 语法 | C++ 最佳实践 · 开源项目分析 | GC 算法 · 调试优化(8篇) · 架构设计(5篇) · 并发与多线程 |
+| 编程范式演进 · Vibecoding · Agent 工作流 | C++ 最佳实践 · 开源项目分析 | GC 算法 · 调试优化(8篇) · 架构设计(5篇) · 并发与多线程 |
 
 ## 📂 目录结构
 
@@ -65,8 +66,8 @@
 │   ├── 📁 03.并发与内存/       # GC · atomic · 线程与异步
 │   └── 📁 04.MCU嵌入式/        # MCU · ARM32 内存注入
 ├── 📁 E-AI与Agent协同开发/     # AI 辅助编程
-│   ├── 📁 01.基础概念/         # 🚧 占位
-│   ├── 📁 02.工作流与方法论/   # Vibecoding · Agent 协作流程
+│   ├── 📁 01.基础概念/         # 编程范式演进
+│   ├── 📁 02.工作流与方法论/   # Vibecoding · AI 超级程序员路线
 │   ├── 📁 03.工具与配置/       # 🚧 占位
 │   └── 📁 04.最佳实践/         # 🚧 占位
 ├── 📁 F-杂项/                 # 工具与杂项
