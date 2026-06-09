@@ -61,12 +61,12 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   └── 📁 06.开源项目分析/     # Muduo/LevelDB/Redis/Nginx
 ├── 📁 D-系统与架构/            # Systems & architecture
 │   ├── 📁 01.架构体系/         # ARM vs X86
-│   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology · plugin architecture · legacy code analysis
+│   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology · plugin architecture
 │   ├── 📁 03.并发与内存/       # GC · atomic · threads & async
 │   └── 📁 04.MCU嵌入式/        # MCU · ARM32 memory injection
 ├── 📁 E-AI与Agent协同开发/     # AI-assisted development
 │   ├── 📁 01.基础概念/         # Paradigm evolution
-│   ├── 📁 02.工作流与方法论/   # Vibecoding · Super Programmer roadmap · context management
+│   ├── 📁 02.工作流与方法论/   # Vibecoding · Super Programmer roadmap · context management · legacy code analysis
 │   ├── 📁 03.工具与配置/       # 🚧 TBD
 │   └── 📁 04.最佳实践/         # 🚧 TBD
 ├── 📁 F-杂项/                 # Tools & misc
