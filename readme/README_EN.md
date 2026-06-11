@@ -71,7 +71,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   └── 📁 04.最佳实践/         # 🚧 TBD
 ├── 📁 F-杂项/                 # Tools & misc
 │   ├── 📁 01.开发工具/         # MobaXterm · CLion · VS2022 · Qt
-│   ├── 📁 02.版本管理/         # Git · log conventions
+│   ├── 📁 02.版本管理/         # Git · log conventions · git bisect · branching strategies
 │   ├── 📁 03.数据库/           # 🚧 WIP
 │   ├── 📁 04.语言与标记/       # Markdown · XML · CSS · PlantUML · English
 │   └── 📁 05.杂项/             # 🚧 Empty (content relocated to topic dirs)

@@ -115,7 +115,7 @@ E-AI与Agent协同开发/  ← AI 辅助编程 · 工作流 · Agent 方法论
 F-杂项/             ← 开发工具 · Git · 语言/标记 · （数据库 🚧 占位）
 ```
 
-~75 篇笔记，完整结构与计数见 [01-repo-structure.md](.claude/instructions/01-repo-structure.md)。
+~79 篇笔记，完整结构与计数见 [01-repo-structure.md](.claude/instructions/01-repo-structure.md)。
 
 ## Key Rules
 
