@@ -69,12 +69,18 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 02.工作流与方法论/   # Vibecoding · Super Programmer roadmap · context management · legacy code analysis
 │   ├── 📁 03.工具与配置/       # 🚧 TBD
 │   └── 📁 04.最佳实践/         # 🚧 TBD
-├── 📁 F-杂项/                 # Tools & misc
-│   ├── 📁 01.开发工具/         # MobaXterm · CLion · VS2022 · Qt
-│   ├── 📁 02.版本管理/         # Git · log conventions · git bisect · branching strategies
-│   ├── 📁 03.数据库/           # 🚧 WIP
-│   ├── 📁 04.语言与标记/       # Markdown · XML · CSS · PlantUML · English
-│   └── 📁 05.杂项/             # 🚧 Empty (content relocated to topic dirs)
+├── 📁 G-版本管理/              # Version control
+│   ├── 1. git.md              # Git complete tutorial
+│   ├── 2. log规范.md          # Conventional Commits
+│   ├── 3. git bisect.md       # Git bisect bug hunting
+│   └── 4. 分支策略.md          # Branching strategies
+├── 📁 H-语言与标记/            # Languages & markup
+│   ├── 1. Markdown.md         # Markdown syntax
+│   ├── 2. CSS.md              # CSS styles
+│   ├── 3. XML.md              # XML basics
+│   ├── 4. PlantUML学习资料.md  # PlantUML resources
+│   ├── 5. UML语法.md          # UML class diagram syntax
+│   └── 6. 常用英语.md          # Programming English vocab
 ├── 📁 picture/                  # Image assets
 ├── 📁 readme/                   # Multi-language README
 ├── 📁 .claude/                  # Claude Code config

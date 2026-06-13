@@ -112,10 +112,11 @@ B-构建与脚本/        ← g++ · Makefile · CMake · Shell · Lua · Python
 C-Linux生态/         ← Linux 环境 · 系统编程 · 开发 · 调试优化 · 网络 · 开源分析
 D-系统与架构/        ← 汇编 · 架构设计 · 并发/内存 · MCU
 E-AI与Agent协同开发/  ← AI 辅助编程 · 工作流 · Agent 方法论
-F-杂项/             ← 开发工具 · Git · 语言/标记 · （数据库 🚧 占位）
+G-版本管理/             ← Git · 提交规范 · bisect · 分支策略
+H-语言与标记/           ← Markdown · CSS · XML · PlantUML · UML · 英语
 ```
 
-~79 篇笔记，完整结构与计数见 [01-repo-structure.md](.claude/instructions/01-repo-structure.md)。
+~76 篇笔记，完整结构与计数见 [01-repo-structure.md](.claude/instructions/01-repo-structure.md)。
 
 ## Key Rules
 

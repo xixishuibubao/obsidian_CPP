@@ -70,12 +70,18 @@
 │   ├── 📁 02.工作流与方法论/   # Vibecoding · AI 超级程序员路线 · 上下文管理 · 遗留代码分析 · 方法论选型 · Workflow 选型
 │   ├── 📁 03.工具与配置/       # 🚧 占位
 │   └── 📁 04.最佳实践/         # 🚧 占位
-├── 📁 F-杂项/                 # 工具与杂项
-│   ├── 📁 01.开发工具/         # MobaXterm · CLion · VS2022 · Qt
-│   ├── 📁 02.版本管理/         # Git · log 规范 · git bisect · 分支策略
-│   ├── 📁 03.数据库/           # 🚧 施工中
-│   ├── 📁 04.语言与标记/       # Markdown · XML · CSS · PlantUML · 英语
-│   └── 📁 05.杂项/             # 🚧 暂空（内容已归入各模块）
+├── 📁 G-版本管理/              # Git 版本控制
+│   ├── 1. git.md              # Git 完整教程
+│   ├── 2. log规范.md          # Conventional Commits 规范
+│   ├── 3. git bisect.md       # 二分查找定位 Bug
+│   └── 4. 分支策略.md          # 分支模型对比
+├── 📁 H-语言与标记/            # 标记语言与常用参考
+│   ├── 1. Markdown.md         # Markdown 语法
+│   ├── 2. CSS.md              # CSS 样式表
+│   ├── 3. XML.md              # XML 基础
+│   ├── 4. PlantUML学习资料.md  # PlantUML 学习路径
+│   ├── 5. UML语法.md          # UML 类图语法
+│   └── 6. 常用英语.md          # 编程英语词汇
 ├── 📁 picture/                  # 图片资源
 ├── 📁 readme/                   # 多语言 README
 ├── 📁 .claude/                  # Claude Code 配置
