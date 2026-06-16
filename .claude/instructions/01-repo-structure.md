@@ -68,6 +68,8 @@
 | `4. PlantUML学习资料.md` | PlantUML 学习路径（书籍 · 文档 · 实操建议） |
 | `5. UML语法.md` | PlantUML 类图语法 + SOLID 设计原则 |
 | `6. 常用英语.md` | 编程常用英语词汇表（~72 词条） |
+| `7. INI语法.md` | INI 段键值配置 · 常用场景 · Python 读取 |
+| `8. YAML语法.md` | YAML 缩进结构 · CI/K8s 场景 · 与 INI/JSON 对比 |
 
 ### 其他顶层目录
 

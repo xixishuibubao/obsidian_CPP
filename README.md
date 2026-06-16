@@ -81,7 +81,9 @@
 │   ├── 3. XML.md              # XML 基础
 │   ├── 4. PlantUML学习资料.md  # PlantUML 学习路径
 │   ├── 5. UML语法.md          # UML 类图语法
-│   └── 6. 常用英语.md          # 编程英语词汇
+│   ├── 6. 常用英语.md          # 编程英语词汇
+│   ├── 7. INI语法.md          # INI 配置语法
+│   └── 8. YAML语法.md         # YAML 配置语法
 ├── 📁 picture/                  # 图片资源
 ├── 📁 readme/                   # 多语言 README
 ├── 📁 .claude/                  # Claude Code 配置
