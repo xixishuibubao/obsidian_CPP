@@ -31,7 +31,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🖥️ **C/C++** | 🐧 **Linux Env** | ⚙️ **Architecture** |
 |:---:|:---:|:---:|
-| Grammar · Templates · Coding Standards · Project Structure | Vim · g++/gdb · Makefile · Kernel Modules | ARM32/64 · X86 ASM · Memory Model |
+| Grammar · Templates · Standards · Project Structure | Commands · g++/gdb · Makefile · Kernel | ARM32/64 · X86 · Memory Model |
 
 | 🛠️ **Dev Tools & Build** | 🌐 **Networking** | 📱 **Embedded MCU** |
 |:---:|:---:|:---:|
@@ -39,7 +39,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🤖 **AI-Assisted Dev** | 📝 **Book Notes** | 🎯 **More Topics** |
 |:---:|:---:|:---:|
-| Paradigm Evolution · Vibecoding · Agent Workflows | C++ Best Practices · Open Source Analysis | GC · Profiling (8) · Architecture (5) · Concurrency |
+| Paradigm Evolution · Vibecoding · Workflows | C++ Best Practices · Open Source | GC · Profiling (10) · Architecture (5) · Telescope1126 (11) |
 
 ## 📂 Directory Layout
 
@@ -51,14 +51,15 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   └── 📁 03.Golang/          # Go basics
 ├── 📁 B-构建与脚本/            # Build & scripting
 │   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts
-│   └── 📁 02.脚本语言/         # Shell · Lua · Python
+│   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++↔Python
 ├── 📁 C-Linux生态/             # Linux ecosystem
-│   ├── 📁 01.Linux环境/        # vim · commands · dynamic libs · rpath · dlopen/hijack · grep
-│   ├── 📁 02.Linux系统编程/     # processes · kernel · drivers
-│   ├── 📁 03.Linux开发/        # RK3588 · Yocto · cross compilation
-│   ├── 📁 04.调试与优化/       # gdb · coredump · perf · file IO · branch opt
+│   ├── 📁 01.Linux环境/        # commands · dynamic libs · rpath · dlopen · grep
+│   ├── 📁 02.Linux系统编程/     # processes · kernel · drivers · IPC
+│   ├── 📁 03.Linux开发/        # RK3588 · Yocto · Buildroot · containers
+│   ├── 📁 04.调试与优化/       # gdb · perf · Valgrind · etc. (10 notes)
 │   ├── 📁 05.网络编程/         # Muduo · IO models
-│   └── 📁 06.开源项目分析/     # Muduo/LevelDB/Redis/Nginx
+│   ├── 📁 06.开源项目分析/     # open source · servers · mjpg-streamer
+│   └── 📁 07.Telescope1126实战/ # 1126B project (11 notes)
 ├── 📁 D-系统与架构/            # Systems & architecture
 │   ├── 📁 01.架构体系/         # ARM vs X86
 │   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology · plugin architecture
@@ -67,8 +68,8 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 ├── 📁 E-AI与Agent协同开发/     # AI-assisted development
 │   ├── 📁 01.基础概念/         # Paradigm evolution
 │   ├── 📁 02.工作流与方法论/   # Vibecoding · Super Programmer roadmap · context management · legacy code analysis
-│   ├── 📁 03.工具与配置/       # 🚧 TBD
-│   └── 📁 04.最佳实践/         # 🚧 TBD
+│   ├── 📁 03.工具与配置/       # tools & MCP index
+│   └── 📁 04.最佳实践/         # best practices index
 ├── 📁 F-版本管理/              # Version control
 │   ├── 1. git.md              # Git complete tutorial
 │   ├── 2. log规范.md          # Conventional Commits
@@ -80,11 +81,14 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 3. XML.md              # XML basics
 │   ├── 4. PlantUML学习资料.md  # PlantUML resources
 │   ├── 5. UML语法.md          # UML class diagram syntax
-│   └── 6. 常用英语.md          # Programming English vocab
-├── 📁 picture/                  # Image assets
-├── 📁 readme/                   # Multi-language README
-├── 📁 .claude/                  # Claude Code config
-└── 📄 CLAUDE.md                 # AI assistant config
+│   ├── 6. 常用英语.md          # Programming English vocab
+│   ├── 7. INI语法.md          # INI config syntax
+│   └── 8. YAML语法.md         # YAML config syntax
+├── 📁 picture/
+├── 📁 readme/
+├── 📄 待记录专题.md              # topic backlog
+├── 📁 .claude/
+└── 📄 CLAUDE.md
 ```
 
 ## 🚀 Getting Started
