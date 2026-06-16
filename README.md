@@ -54,7 +54,7 @@
 │   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · 编译脚本
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++与Python互调用
 ├── 📁 C-Linux生态/             # Linux 全栈
-│   ├── 📁 01.Linux环境/        # 常用指令 · 动态库 · rpath · 加载与劫持 · grep · 目录结构
+│   ├── 📁 01.Linux环境/        # 常用指令 · 动态库 · rpath · 加载与劫持 · grep · 目录结构 · 启动流程
 │   ├── 📁 02.Linux系统编程/     # 进程 · 内核 · 驱动 · IPC · dup · popen
 │   ├── 📁 03.Linux开发/        # RK3588 · 交叉编译 · 容器化与系统构建 · Buildroot
 │   ├── 📁 04.调试与优化/       # gdb · coredump · perf · Valgrind · CPU 排查等（10 篇）
