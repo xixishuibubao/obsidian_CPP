@@ -68,8 +68,8 @@ All paths relative to vault root.
 # 近期变更
 git log --oneline --name-status -10
 
-# 各模块笔记数（Bash）
-for d in A-*/ B-*/ C-*/ D-*/ E-*/ F-*/ G-*/; do count=$(ls "$d"*.md 2>/dev/null | wc -l); [ "$count" -gt 0 ] && echo "${d%/} → $count 篇"; done
+# 各模块笔记数（递归，含子目录）
+for d in A-*/ B-*/ C-*/ D-*/ E-*/ F-*/ G-*/; do count=$(find "$d" -name '*.md' | wc -l); echo "${d%/} → $count 篇"; done
 
 ```
 

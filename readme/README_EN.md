@@ -31,7 +31,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🖥️ **C/C++** | 🐧 **Linux Env** | ⚙️ **Architecture** |
 |:---:|:---:|:---:|
-| Grammar · Templates · Standards · Project Structure | Commands · g++/gdb · Makefile · Kernel | ARM32/64 · X86 · Memory Model |
+| Grammar · Standards · Templates · More Effective C++ | Commands · g++/gdb · Makefile · Kernel | ARM32/64 · X86 · Memory Model |
 
 | 🛠️ **Dev Tools & Build** | 🌐 **Networking** | 📱 **Embedded MCU** |
 |:---:|:---:|:---:|
@@ -55,7 +55,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 ├── 📁 C-Linux生态/             # Linux ecosystem
 │   ├── 📁 01.Linux环境/        # commands · dynamic libs · rpath · dlopen · grep
 │   ├── 📁 02.Linux系统编程/     # processes · kernel · drivers · IPC
-│   ├── 📁 03.Linux开发/        # RK3588 · Yocto · Buildroot · containers
+│   ├── 📁 03.Linux开发/        # RK3588 · cross-compilation · build systems · Buildroot
 │   ├── 📁 04.调试与优化/       # gdb · perf · Valgrind · etc. (10 notes)
 │   ├── 📁 05.网络编程/         # Muduo · IO models
 │   ├── 📁 06.开源项目分析/     # open source · servers · mjpg-streamer
