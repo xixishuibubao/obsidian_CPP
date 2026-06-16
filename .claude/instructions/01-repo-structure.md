@@ -95,6 +95,8 @@
 ## 特殊文件
 
 - `CLAUDE.md` — 项目级 Claude Code 指引（本文件的上层入口）
+- `.cursor/rules/` — Cursor 规则（对齐 Claude Code，见 `05-agent-coordination.md`）
+- `.claude/instructions/05-agent-coordination.md` — 多 Agent 协作约定
 - `README.md` — 项目介绍（中文，默认显示）
 - `readme/README_EN.md` — 项目介绍（英文版）
 - `.gitignore` — 忽略 `.obsidian/*`（白名单插件/主题）、大文件、编辑器临时文件

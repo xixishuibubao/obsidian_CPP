@@ -1,0 +1,29 @@
+---
+description: 本仓库以 Claude Code 为主 Agent；Cursor 等须对齐其规则与记忆
+alwaysApply: true
+---
+
+# Claude Code 为主 Agent
+
+本 Obsidian vault 的 **主 Agent 是 Claude Code**。在 Cursor 或其他 IDE Agent 中工作时，须以 Claude Code 的规则与记忆为准，不另起一套规范。
+
+## 必读来源（优先级从高到低）
+
+1. **`CLAUDE.md`**（仓库根）— 项目入口、Quick Reference、Key Rules
+2. **`.claude/instructions/`** — 笔记格式、Git 工作流、目录结构等细则
+3. **Claude Code 项目记忆** — 用户在 Claude Code 中建立的约定、进行中的专题（如 `待记录专题.md`）
+
+动手前：笔记类任务读 `02-note-conventions.md`；提交/同步读 `03-git-workflow.md`。
+
+## 行为要求
+
+- 工作流（wikilink、标题编号、commit 格式、squash、`.gitkeep`）与 Claude Code 一致
+- Cursor 侧新增或变更约定时，同步写回 `CLAUDE.md` 或 `.claude/instructions/`，避免双轨
+- Claude Code Skills（`/ingest-note`、`/quick-commit` 等）在 Cursor 无对应命令时，手动执行等效步骤
+
+## 禁止
+
+- 忽略 `CLAUDE.md` Key Rules（如无 YAML frontmatter、Conventional Commits 等）
+- 未读 `.claude/instructions/` 就重写笔记格式或 Git 流程
+
+详见：`.claude/instructions/05-agent-coordination.md`
