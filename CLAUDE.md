@@ -121,8 +121,8 @@ powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 
 ## Key Rules
 
-1. **每次改动后本地 commit，推远端前 squash** — 保持远端 log 清晰
-2. **Commit 用 Conventional Commits 格式**：`type(scope): description`，内容优先用简体中文。description 须简述具体改动点，不得过度概括导致信息丢失（如"修复若干问题"不合理，应列出各文件的具体变更原因）
+1. **频繁提交扼要，squash 终态详细** — 工作中间态提交（如 AI 逐次改动）用 concise message 概括核心改动即可，不要求逐文件列举；推远端前 squash 时或 `/quick-commit` 时，必须展开为逐文件详细 log
+2. **Commit 用 Conventional Commits 格式**：`type(scope): description`，内容优先用简体中文。description 须体现具体改动点，不得用"修复若干问题""优化多处"等无信息量概括
 3. **笔记使用标准 Markdown**，无 YAML frontmatter，无 tags
 4. **终端优先用 Bash**，中文乱码时回退 PowerShell
 5. **目录变更后运行 `.gitkeep` hook**
