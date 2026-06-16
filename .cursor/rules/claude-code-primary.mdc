@@ -19,7 +19,6 @@ alwaysApply: true
 
 - 工作流（wikilink、标题编号、commit 格式、squash、`.gitkeep`）与 Claude Code 一致
 - Cursor 侧新增或变更约定时，同步写回 `CLAUDE.md` 或 `.claude/instructions/`，避免双轨
-- Claude Code Skills（`/ingest-note`、`/quick-commit` 等）在 Cursor 无对应命令时，手动执行等效步骤
 
 ## 禁止
 

@@ -39,5 +39,5 @@ $env:LC_ALL = 'C.UTF-8'
 ## Git 路径约定
 
 Git for Windows 使用 msys2 路径格式：
-- C:\Users\AS\ 对应 /c/Users/AS/
+- `C:\Users\<用户名>\` 对应 `/c/Users/<用户名>/`
 - 传递给 git filter-branch 的 msg-filter 等参数需要此格式

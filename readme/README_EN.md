@@ -69,12 +69,12 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 02.工作流与方法论/   # Vibecoding · Super Programmer roadmap · context management · legacy code analysis
 │   ├── 📁 03.工具与配置/       # 🚧 TBD
 │   └── 📁 04.最佳实践/         # 🚧 TBD
-├── 📁 G-版本管理/              # Version control
+├── 📁 F-版本管理/              # Version control
 │   ├── 1. git.md              # Git complete tutorial
 │   ├── 2. log规范.md          # Conventional Commits
 │   ├── 3. git bisect.md       # Git bisect bug hunting
 │   └── 4. 分支策略.md          # Branching strategies
-├── 📁 H-语言与标记/            # Languages & markup
+├── 📁 G-语言与标记/            # Languages & markup
 │   ├── 1. Markdown.md         # Markdown syntax
 │   ├── 2. CSS.md              # CSS styles
 │   ├── 3. XML.md              # XML basics
