@@ -15,7 +15,7 @@ English readers see [README_EN.md](readme/README_EN.md).
 | 项目 | 规则 |
 |------|------|
 | **笔记引用** | Obsidian wikilink `[[文件名\|显示文字]]` |
-| **标题格式** | `# 1.`, `## 1.1`, `### 1.1.1` 数字编号 |
+| **标题格式** | `# N.` / `## N.N` 强制编号，`###` 起可选 |
 | **Frontmatter** | 不使用 YAML frontmatter 或 tags |
 | **图片引用** | `![描述](picture/文件名.png)` |
 | **编码** | 中文内容优先 Bash，乱码时回退 PowerShell 并设 `LC_ALL=C.UTF-8` |
@@ -103,6 +103,7 @@ powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 4. **终端优先用 Bash**，中文乱码时回退 PowerShell
 5. **目录变更后运行 `.gitkeep` hook**
 6. **本文件保持简洁**（100~130 行），接近上限时拆分至 `.claude/instructions/` 子文件
+7. **计划文件用完即删** — `ExitPlanMode` 或 `/init` 等操作生成的 plan 文件，执行完毕后及时清理，不提交入库
 
 ## Detailed References
 
