@@ -41,3 +41,4 @@ Cursor 无 slash command 时，手动执行等效步骤：
 - [02-note-conventions.md](02-note-conventions.md)
 - [03-git-workflow.md](03-git-workflow.md)
 - `.cursor/rules/claude-code-primary.mdc`
+- 关于 Claude Code Team 模式（多 Agent 团队成员协作）参见 [[E-AI与Agent协同开发/03.工具与配置/3. Claude Code Team 模式协作指南|Team 模式协作指南]]
