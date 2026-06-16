@@ -36,8 +36,11 @@ English readers see [README_EN.md](readme/README_EN.md).
    ```bash
    grep -roP '\[\[old-name(?:\|.*?)?\]\]' . --include='*.md' | grep -v '\.git/'
    ```
-3. Fix image paths in the moved note if the section number changed
-4. Commit with `refactor(目录): 描述`
+3. **Wikilink 更新要点**：
+   - 目标路径不含 `.md` 后缀（`[[file]]` 而非 `[[file.md]]`）
+   - 跨模块引用使用 vault 相对路径 `[[模块-名称/子目录/文件名]]`
+4. Fix image paths in the moved note if the section number changed
+5. Commit with `refactor(目录): 描述`
 
 ### Maintain Directories
 - After creating/removing a directory, run the `.gitkeep` hook:
@@ -58,6 +61,27 @@ git reset --soft HEAD~N && git commit -m "type(scope): description"
 ```
 
 详见 [03-git-workflow.md](.claude/instructions/03-git-workflow.md)。
+
+### Pre-commit 自检
+提交前依序执行以下步骤：
+
+**Step 1 — 换行符统一**（避免仅换行符改动的提交）：
+```bash
+git add --renormalize .
+```
+
+**Step 2 — 完整性检查**，发现问题先修复再提交：
+```bash
+# 1) 标题格式
+grep -rnP '^# \d' --include='*.md' . | grep -v '\.git/' | grep -v '\.claude/' | grep -v 'README' | grep -v '99\.'
+# 2) YAML frontmatter
+grep -rlnP '^---$' --include='*.md' . | grep -v '\.git/' | grep -v '\.claude/' | grep -v 'CLAUDE.md'
+# 3) 无标注代码块
+grep -rnP '^\x60\x60\x60\s*$' --include='*.md' . | grep -v '\.git/' | grep -v '\.claude/'
+# 4) 增量变更文件的完整审查见下文
+```
+
+增量审查细则见 [06-continuous-review.md](.claude/instructions/06-continuous-review.md)。
 
 ## Useful Commands
 
@@ -102,8 +126,9 @@ powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 3. **笔记使用标准 Markdown**，无 YAML frontmatter，无 tags
 4. **终端优先用 Bash**，中文乱码时回退 PowerShell
 5. **目录变更后运行 `.gitkeep` hook**
-6. **本文件保持简洁**（100~130 行），接近上限时拆分至 `.claude/instructions/` 子文件
-7. **计划文件用完即删** — `ExitPlanMode` 或 `/init` 等操作生成的 plan 文件，执行完毕后及时清理，不提交入库
+6. **commit 前必须统一换行符** — 运行 `git add --renormalize .` 使 CRLF/LF 与 `.gitattributes` 一致，避免仅换行符改动的提交
+7. **本文件保持简洁**（100~130 行），接近上限时拆分至 `.claude/instructions/` 子文件
+8. **计划文件用完即删** — `ExitPlanMode` 或 `/init` 等操作生成的 plan 文件，执行完毕后及时清理，不提交入库
 
 ## Detailed References
 

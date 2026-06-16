@@ -43,7 +43,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 ## 📂 Directory Layout
 
-```
+```plain
 📦 obsidian_files
 ├── 📁 A-编程语言/              # Languages
 │   ├── 📁 01.C语言/           # C · low-level · system programming

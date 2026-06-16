@@ -25,11 +25,13 @@
 ```markdown
 [[文件名]]                          → 显示为文件名
 [[文件名|自定义显示文字]]             → 显示为自定义文字
-[[C-Linux生态/07.Telescope1126实战/8. Tornado与asyncio服务端|Tornado 服务端]]  → 跨目录推荐全路径
+[[C-Linux生态/07.Telescope1126实战/8. Tornado与asyncio服务端|Tornado 服务端]]  → 跨目录引用
 ```
 
-- `文件名` 不含 `.md` 扩展名
-- **跨模块引用**（A/B/C/D/E/F/G 之间）使用 `[[目录/子目录/文件名|显示文字]]`，避免短链 `[[8. xxx]]` 在 Obsidian 中解析歧义
+- `文件名` **不含 `.md` 扩展名** — `[[file.md]]` 是错误写法，Obsidian 无法解析
+- **跨模块引用**（A/B/C/D/E/F/G 之间）使用 **vault 相对路径** `[[模块-名称/子目录/文件名|显示文字]]`，路径以 vault 根为起点，不加 `/` 前缀。例如 `[[C-Linux生态/04.调试与优化/1. gdb|GDB 笔记]]`
+  - ❌ ~~`C:/Users/.../study_cpp/C-Linux生态/...`~~（绝对路径，不可移植）
+  - ✅ `[[C-Linux生态/04.调试与优化/1. gdb|GDB 笔记]]`（相对 vault 根，跨平台通用）
 - 同目录内短链 `[[4. 驱动插件与pybind11动态加载]]` 可接受
 
 ## 链接完整性检查
@@ -47,11 +49,11 @@ grep -roP '\[\[[^$\][]+?\]\]' . --include='*.md' | grep -v '\.git/' | sort -u
 
 ## 代码块
 
-使用 fenced code blocks 并标注语言：
+使用 fenced code blocks 并标注语言（**标签统一小写**）：
 
 - `c` — C 语言代码
-- `C++` — C++ 代码
-- `bash` — Shell 命令
+- `cpp` — C++ 代码（不使用 `C++` 或 `c++`）
+- `bash` — Shell 命令（不使用 `Bash`）
 - `powershell` — PowerShell 命令
 - `makefile` — Makefile
 - `go` — Go 代码
@@ -59,7 +61,9 @@ grep -roP '\[\[[^$\][]+?\]\]' . --include='*.md' | grep -v '\.git/' | sort -u
 - `python` — Python 代码
 - `java` — Java 代码
 - `sql` — SQL 语句
-- `plain` / `Plain` — 纯文本（不要使用无标注的缩进代码块）
+- `plain` / `text` — 纯文本（不要使用无标注的缩进代码块）
+
+> 语言标签使用全小写（`bash` 而非 `Bash`，`cpp` 而非 `C++` 或 `c++`），保持全库一致。
 
 ## 图片
 
