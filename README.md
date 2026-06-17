@@ -56,7 +56,7 @@
 ├── 📁 C-Linux生态/             # Linux 全栈
 │   ├── 📁 01.Linux环境/        # 常用指令 · 动态库 · rpath · 加载与劫持 · grep · 目录结构 · 启动流程
 │   ├── 📁 02.Linux系统编程/     # 进程 · 内核 · 驱动 · IPC · dup · popen
-│   ├── 📁 03.Linux开发/        # RK3588 · 交叉编译 · 容器化与系统构建 · Buildroot
+│   ├── 📁 03.Linux开发/        # RK3588 · 交叉编译 · 容器化与系统构建 · Buildroot · Rockchip 分区
 │   ├── 📁 04.调试与优化/       # gdb · coredump · perf · Valgrind · CPU 排查等（10 篇）
 │   ├── 📁 05.网络编程/         # Muduo · IO 模型
 │   ├── 📁 06.开源项目分析/     # 开源分析 · 服务器 · mjpg-streamer
