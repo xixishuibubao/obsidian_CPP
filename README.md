@@ -51,7 +51,7 @@
 │   ├── 📁 02.C++/             # C++ 语法 · 代码规范 · 模板 · More Effective C++
 │   └── 📁 03.Golang/          # Go 语言基础
 ├── 📁 B-构建与脚本/            # 构建工具与脚本语言
-│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · 编译脚本
+│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · 编译脚本 · 链接脚本
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++与Python互调用
 ├── 📁 C-Linux生态/             # Linux 全栈
 │   ├── 📁 01.Linux环境/        # 常用指令 · 动态库 · rpath · 加载与劫持 · grep · 目录结构 · 启动流程

@@ -50,7 +50,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 02.C++/             # C++ syntax · standards · templates · More Effective C++
 │   └── 📁 03.Golang/          # Go basics
 ├── 📁 B-构建与脚本/            # Build & scripting
-│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts
+│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts · linker scripts
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++↔Python
 ├── 📁 C-Linux生态/             # Linux ecosystem
 │   ├── 📁 01.Linux环境/        # commands · dynamic libs · rpath · dlopen · grep
