@@ -25,7 +25,7 @@
 ```markdown
 [[文件名]]                          → 显示为文件名
 [[文件名|自定义显示文字]]             → 显示为自定义文字
-[[C-Linux生态/07.Telescope1126实战/8. Tornado与asyncio服务端|Tornado 服务端]]  → 跨目录引用
+[[C-Linux生态/04.调试与优化/1. gdb|GDB 笔记]]  → 跨目录引用
 ```
 
 - `文件名` **不含 `.md` 扩展名** — `[[file.md]]` 是错误写法，Obsidian 无法解析

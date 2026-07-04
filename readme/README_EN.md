@@ -39,7 +39,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🤖 **AI-Assisted Dev** | 📝 **Book Notes** | 🎯 **More Topics** |
 |:---:|:---:|:---:|
-| Paradigm Evolution · Vibecoding · Workflows | C++ Best Practices · Open Source | GC · Profiling (10) · Architecture (5) · Telescope1126 (11) |
+| Paradigm Evolution · Vibecoding · Workflows | C++ Best Practices · Open Source | GC · Profiling (10) · Architecture (5) · Linux Dev (5) |
 
 ## 📂 Directory Layout
 
@@ -58,8 +58,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 03.Linux开发/        # RK3588 · cross-compilation · build systems · Buildroot · Rockchip partitions
 │   ├── 📁 04.调试与优化/       # gdb · perf · Valgrind · etc. (10 notes)
 │   ├── 📁 05.网络编程/         # Muduo · IO models
-│   ├── 📁 06.开源项目分析/     # open source · servers · mjpg-streamer
-│   └── 📁 07.Telescope1126实战/ # 1126B project (11 notes)
+│   └── 📁 06.开源项目分析/     # open source · servers · mjpg-streamer
 ├── 📁 D-系统与架构/            # Systems & architecture
 │   ├── 📁 01.架构体系/         # ARM vs X86
 │   ├── 📁 02.软件架构设计/     # PIMPL · CLI · methodology · plugin architecture
