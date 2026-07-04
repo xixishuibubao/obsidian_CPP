@@ -85,7 +85,6 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   └── 8. YAML语法.md         # YAML config syntax
 ├── 📁 picture/
 ├── 📁 readme/
-├── 📄 待记录专题.md              # topic backlog
 ├── 📁 .claude/
 └── 📄 CLAUDE.md
 ```

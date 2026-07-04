@@ -86,7 +86,6 @@
 │   └── 8. YAML语法.md         # YAML 配置语法
 ├── 📁 picture/                  # 图片资源
 ├── 📁 readme/                   # 多语言 README
-├── 📄 待记录专题.md              # 专题 backlog
 ├── 📁 .claude/                  # Claude Code 配置
 └── 📄 CLAUDE.md                 # AI 辅助配置
 ```

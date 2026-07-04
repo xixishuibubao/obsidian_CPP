@@ -16,7 +16,7 @@
    - 写/改笔记 → `02-note-conventions.md`
    - 提交/推送 → `03-git-workflow.md`
    - 目录规划 → `01-repo-structure.md`
-3. 查看 **`待记录专题.md`** 与近期 `git log`，了解 Claude Code 侧未完成或刚完成的工作
+3. 查看 **`.claude/plan/*-vault-audit-report.md`**（语义 backlog）与近期 `git log`，了解 Claude Code 侧未完成或刚完成的工作
 4. 仅在用户明确要求时 commit；消息格式遵循 `03-git-workflow.md`
 5. Plan 模式任务 → 阅读 `07-plan-mode.md`；计划文件写入 `.claude/plan/`
 
@@ -33,13 +33,14 @@ Skill 索引见 [`.claude/skills/README.md`](../skills/README.md)。Cursor 无 s
 ### 知识库维护链
 
 ```
-ingest-note → quick-commit → squash-commits → push
+ingest-note → quick-commit → [vault-audit quick] → squash-commits → push
 ```
 
 | Skill | 路径 | 等效操作 |
 |-------|------|----------|
 | `/ingest-note` | `.claude/skills/ingest-note/SKILL.md` | 清洗→格式化→A–G 落盘→wikilink→索引/README→删源→06 审查→renormalize→可选 commit |
 | `/quick-commit` | `.claude/skills/quick-commit/SKILL.md` | status/diff/log→手动改动检测→06 审查→renormalize→逐文件 Conventional Commit→确认 commit |
+| `/vault-audit` | `.claude/skills/vault-audit/SKILL.md` | 运行 `skills/vault-audit/scripts/vault-audit.sh`→生成/更新 audit-report→P0/P1 修复→module 语义审查→提示 quick-commit |
 | `/squash-commits` | `.claude/skills/squash-commits/SKILL.md` | 工作区预检→列未推送 commits→备份检测→策略→renormalize→squash→diff 验证 |
 
 ### 环境初始化链（一次性）

@@ -65,9 +65,8 @@ Plan 模式若通过工具生成带 `todos` frontmatter 的文件，落盘时保
 | 路径 | 用途 |
 |------|------|
 | `.claude/instructions/` | 长期有效的项目规范（本文件所在处） |
-| `.claude/plan/` | 单次任务/会话的计划与思考快照 |
+| `.claude/plan/` | 单次任务/会话的计划与思考快照；语义 backlog 见 `*-vault-audit-report.md` |
 | `.claude/skills/` | 可复用的 slash command 工作流 |
-| `待记录专题.md` | 知识库内容 backlog，**不是** Agent 实施计划 |
 
 ## 相关文件
 

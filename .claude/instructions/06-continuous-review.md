@@ -60,6 +60,15 @@ grep -rnP '^\x60\x60\x60\s*$' --include='*.md' . | grep -v '\.git/' | grep -v '\
 | 6 | **交叉引用** | 链接到同模块或跨模块相关笔记 | 追加 `[[wikilink]]` |
 | 7 | **薄厚格式** | 新笔记应有 `【核心精简提纲】` + `【完整拓展详情】` 双分区 | 补充缺失分区 |
 
+### 扩展 4 项（全库审计，见 [08-vault-audit.md](08-vault-audit.md)）
+
+| # | 检查项 | 规范要求 | 修复方式 |
+|---|--------|----------|----------|
+| 8 | **索引同步** | 改目录笔记数时更新 `01-repo-structure.md` + README | 重算 `find … -name '*.md'` |
+| 9 | **删除/移动** | 删/移笔记后跑 M1 断链扫描 | `bash .claude/skills/vault-audit/scripts/vault-audit.sh quick` |
+| 10 | **陈旧词表** | 正文不含已删专题名（1126/DriverSO 等） | 改通用示例或删引用 |
+| 11 | **语义一致** | 大改技术段落后核对相邻笔记无矛盾 | module 模式语义审查 |
+
 ### 修复原则
 - 发现即修复，直接编辑文件
 - 格式/链接/代码块等机械问题 **必须修复** 后方可提交
@@ -69,7 +78,7 @@ grep -rnP '^\x60\x60\x60\s*$' --include='*.md' . | grep -v '\.git/' | grep -v '\
 
 ## 3. 与相关工作流的关系
 
-- **一次性全库审查** → 见 [审查报告.md](../../审查报告.md)（如存在）
+- **全库审计** → `.claude/plan/YYYY-MM-DD-vault-audit-report.md`（由 `/vault-audit` 生成，细则见 [08-vault-audit.md](08-vault-audit.md)）
 - **增量审查** → 本文档，每次修改后执行
 - **笔记创建** → 按 [02-note-conventions.md](02-note-conventions.md) 格式新建，之后执行增量审查
 - **Git 工作流** → 按 [03-git-workflow.md](03-git-workflow.md) 提交
@@ -79,5 +88,5 @@ grep -rnP '^\x60\x60\x60\s*$' --include='*.md' . | grep -v '\.git/' | grep -v '\
 ## 4. 本文件维护
 
 - 审查项随知识库规范演进而调整
-- 发现新的常见问题类型可增补到 7 项清单中
+- 发现新的常见问题类型可增补到 7+4 项清单中
 - 保持简洁，检查命令优先用 bash one-liner
