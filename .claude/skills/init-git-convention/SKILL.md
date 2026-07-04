@@ -86,7 +86,9 @@ git rev-parse --git-dir 2>NUL     # 检查当前目录是否在 git 仓库内
 | 中文 + 企业项目 | `"描述"` | Use service/domain name, e.g., `feat(payment)`, `fix(auth)` |
 | English + 任意 | `"description"` | 对应英文版的 scope 示例 |
 
-### 3. 生成 .claude/instructions/01-git-workflow.md
+### 3. 生成 .claude/instructions/NN-git-workflow.md
+
+> **编号策略**：扫描 `.claude/instructions/` 已有 `NN-*.md`，取下一可用序号（如本 vault 为 `03-git-workflow.md`），勿硬编码 `01-`。
 
 ```markdown
 # Git Workflow Reference
@@ -179,13 +181,10 @@ if (Test-Path ".claude/settings.json") {
 
 # 注入 git 权限（如果已有则跳过重复项）
 $gitPermissions = @(
-    "Bash(git add *)",
-    "Bash(git commit -m *)",
-    "Bash(git reset --soft *)",
-    "Bash(git rebase *)",
-    "Bash(git log *)",
-    "Bash(git status *)",
-    "Bash(git diff *)"
+    "Bash(git *)",
+    "PowerShell(Get-Content *)",
+    "PowerShell(Set-Content *)",
+    "PowerShell(ConvertFrom-Json *)"
 )
 
 if (-not $settings.permissions) { $settings.permissions = @{} }
@@ -205,7 +204,7 @@ $settings | ConvertTo-Json -Depth 4 | Set-Content ".claude/settings.json" -Encod
 ```markdown
 ## CLAUDE.md Self-Management
 
-- Keep root CLAUDE.md concise: Root CLAUDE.md should stay under 150–180 lines. When it grows beyond, split detailed content into `.claude/instructions/` sub-files.
+- Keep root CLAUDE.md concise: Root CLAUDE.md should stay under **100–130 lines** (this vault) or 150–180 lines (generic projects). When it grows beyond, split detailed content into `.claude/instructions/` sub-files.
 - Sub-file convention: Place detailed instructions in `.claude/instructions/01-*.md`, `02-*.md`, etc.
 - Reference from root: Root CLAUDE.md should only contain essential rules and links to sub-files.
 ```
@@ -222,7 +221,7 @@ ls .claude/instructions/ 2>/dev/null || echo "No .claude/instructions/ directory
 ```
 ✓ 初始化完成：
   - CLAUDE.md: Git 工作流段落已写入
-  - .claude/instructions/01-git-workflow.md: 已创建
+  - .claude/instructions/NN-git-workflow.md: 已创建（动态编号）
   - .claude/settings.json: Git 权限已合并
 
   建议下一步：检查 CLAUDE.md 确保无冲突，然后提交初始化：
@@ -237,7 +236,14 @@ ls .claude/instructions/ 2>/dev/null || echo "No .claude/instructions/ directory
 ## 注意事项
 
 - **必须预检**：git 是否安装、当前目录是否在仓库内
-- 如项目已有 `.claude/instructions/` 目录，使用下一个可用编号（例如已有 `01-`，则创建 `02-git-workflow.md`）
+- 如项目已有 `.claude/instructions/` 目录，**扫描取下一可用编号**（例如已有 `01-repo-structure.md` 则创建 `NN-git-workflow.md`）
 - 如项目 CLAUDE.md 已有 Git 段落，询问用户是否覆盖或合并
 - scope 约定根据项目类型调整，不绑定特定语言
 - settings.json 合并时使用完整的 PowerShell 命令而非模糊描述
+
+## 相关文件
+
+- [03-git-workflow.md](../../instructions/03-git-workflow.md) — 本 vault 权威 Git 细则
+- [../init-win-env/SKILL.md](../init-win-env/SKILL.md)
+- [../init-note-vault/SKILL.md](../init-note-vault/SKILL.md)
+- [../quick-commit/SKILL.md](../quick-commit/SKILL.md)

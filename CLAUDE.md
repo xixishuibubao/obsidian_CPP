@@ -20,6 +20,7 @@ English readers see [README_EN.md](readme/README_EN.md).
 | **图片引用** | `![描述](picture/文件名.png)` |
 | **编码** | 中文内容优先 Bash，乱码时回退 PowerShell 并设 `LC_ALL=C.UTF-8` |
 | **空目录占位** | 使用 `.gitkeep` 文件占位 |
+| **Plan 模式计划** | 写入 `.claude/plan/`，命名 `YYYY-MM-DD-主题.plan.md` |
 
 ## Common Workflows
 
@@ -128,7 +129,7 @@ powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 5. **目录变更后运行 `.gitkeep` hook**
 6. **commit 前必须统一换行符** — 运行 `git add --renormalize .` 使 CRLF/LF 与 `.gitattributes` 一致，避免仅换行符改动的提交
 7. **本文件保持简洁**（100~130 行），接近上限时拆分至 `.claude/instructions/` 子文件
-8. **计划文件用完即删** — `ExitPlanMode` 或 `/init` 等操作生成的 plan 文件，执行完毕后及时清理，不提交入库
+8. **Plan 模式计划落盘 `.claude/plan/`** — Agent 在 Plan 模式产出的思考与计划必须写入 `.claude/plan/`（命名 `YYYY-MM-DD-主题.plan.md`），不得写入 `.cursor/plans/` 或 vault 外路径；执行完毕后保留供追溯，细则见 `07-plan-mode.md`
 
 ## Detailed References
 
@@ -137,4 +138,5 @@ powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 - [03-git-workflow.md](.claude/instructions/03-git-workflow.md) — Git 工作流、commit 格式、squash 策略
 - [04-shell-config.md](.claude/instructions/04-shell-config.md) — Shell 终端配置与编码处理
 - [05-agent-coordination.md](.claude/instructions/05-agent-coordination.md) — 多 Agent 协作（Claude Code 为主）
+- [07-plan-mode.md](.claude/instructions/07-plan-mode.md) — Plan 模式计划文件存放与命名
 - `~/.claude/CLAUDE.md` — 全局 CLAUDE.md

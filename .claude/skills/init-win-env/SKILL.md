@@ -11,6 +11,10 @@ description: Windows 环境初始化 — 探测本机 Git Bash/PowerShell 路径
 
 ## 执行流程
 
+### 0. 预检与冲突检测
+
+检查 `CLAUDE.md` 是否已有 Shell 段落、`04-shell-config.md` 是否已存在；冲突时询问追加/覆盖/跳过。
+
 ### 1. 环境探测
 
 依次执行以下探测命令（按优先级，成功后跳过后续）：
@@ -22,9 +26,20 @@ description: Windows 环境初始化 — 探测本机 Git Bash/PowerShell 路径
 | 系统语言 | `(Get-Culture).Name` | — | — |
 | Shell 可用性 | 尝试执行 `bash -c "echo ok"` 看是否返回 `ok` 且无乱码 | — | 失败: "bash 路径可用但执行返回异常，请检查是否有安全软件拦截" |
 
-### 2. 生成 CLAUDE.md（Shell 规则段落 + 自身管理规则）
+### 2. 生成配置
 
-写入以下内容（使用探测到的实际路径），追加到已有 CLAUDE.md 末尾或新建文件：
+**优先**生成或更新 `.claude/instructions/04-shell-config.md`（与本 vault 权威一致）；`CLAUDE.md` 仅保留摘要：
+
+```markdown
+## Shell & Terminal
+
+- 中文内容优先 **Git Bash**；乱码时回退 PowerShell 并设 `$env:LC_ALL = 'C.UTF-8'`
+- 细则见 [04-shell-config.md](.claude/instructions/04-shell-config.md)
+```
+
+完整 Shell 策略（任务分类、Python 兜底等）仅写入 `04-shell-config.md`，勿重复膨胀 CLAUDE.md。
+
+以下为 **通用模板**（非本 vault 默认），供无 `04-shell-config.md` 的新项目选用：
 
 ```markdown
 ## Shell & Terminal
@@ -57,7 +72,7 @@ description: Windows 环境初始化 — 探测本机 Git Bash/PowerShell 路径
 
 ## CLAUDE.md 自身管理
 
-- 根文件保持在 150–180 行以内，超出则拆分到 `.claude/instructions/` 下
+- 根文件保持在 **100–130 行**以内（本 vault），超出则拆分到 `.claude/instructions/`
 - 子文件同样控制在 200 行以内，超出则递归拆分（如 `01-linux-env.md` → `01-linux-env-basics.md` + `01-linux-env-advanced.md`）
 - 根文件通过 `- [标题](.claude/instructions/XX-name.md) — 描述` 引用所有子文件
 - 生成此规则的脚本见 `init-win-env` skill，重建规则可重新执行该 skill
@@ -136,3 +151,11 @@ git --version
 - 权限预设覆盖常见的读操作（`cat`, `ls`, `Get-Content`, `Test-Path`）
 - 验证步骤实际运行 bash 和 git 确认生成规则可用
 - 写入 memory 时仅限 CJK 环境，避免冗余
+
+## 相关文件
+
+- [04-shell-config.md](../../instructions/04-shell-config.md)
+- [../init-git-convention/SKILL.md](../init-git-convention/SKILL.md)
+- [../init-note-vault/SKILL.md](../init-note-vault/SKILL.md)
+
+**Bootstrap 顺序**：`init-win-env` → `init-git-convention` → `init-note-vault`

@@ -13,7 +13,7 @@ alwaysApply: true
 2. **`.claude/instructions/`** — 笔记格式、Git 工作流、目录结构等细则
 3. **Claude Code 项目记忆** — 用户在 Claude Code 中建立的约定、进行中的专题（如 `待记录专题.md`）
 
-动手前：笔记类任务读 `02-note-conventions.md`；提交/同步读 `03-git-workflow.md`。
+动手前：笔记类任务读 `02-note-conventions.md`；提交/同步读 `03-git-workflow.md`；Plan 模式读 `07-plan-mode.md`，计划写入 `.claude/plan/`。
 
 ## 行为要求
 

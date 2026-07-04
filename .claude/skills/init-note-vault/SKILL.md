@@ -58,8 +58,8 @@ ls CLAUDE.md 2>/dev/null || echo "not found"
 ? 请选择以下模板项（多选）:
    ──
    [✓] 完整性检查命令 — 生成检查 wikilink 断链/标题格式的 bash 命令
-   [✓] 全量语言标注列表 — c/C++/bash/powershell/makefile/go/python/lua/java/sql/plain
-   [ ] 精简语言标注列表 — 仅 c/C++/bash/powershell/makefile
+   [✓] 全量语言标注列表 — c/cpp/bash/powershell/makefile/go/python/lua/java/sql/plain
+   [ ] 精简语言标注列表 — 仅 c/cpp/bash/powershell/makefile
    [✓] .gitkeep 维护脚本段落 — 生成维护空目录占位的命令
    ──
 ```
@@ -76,7 +76,7 @@ ls CLAUDE.md 2>/dev/null || echo "not found"
 | **Note Links** | Obsidian wikilink `[[file\|display text]]` |
 | **Title Format** | `# 1.`, `## 1.1`, `### 1.1.1` numbered |
 | **Frontmatter** | No YAML frontmatter or tags |
-| **Code Blocks** | Fenced with language annotation (c, C++, bash, python, go, sql, ...) |
+| **Code Blocks** | Fenced with language annotation (c, cpp, bash, python, go, sql, ...) |
 | **Images** | `![description](picture/filename.png)` |
 | **Style** | Bilingual writing: English terms, {explanatory_language} explanation |
 | **Empty Dirs** | `.gitkeep` placeholder files |
@@ -140,7 +140,7 @@ Fenced code blocks with language annotation:
 | Language  | Tag        |
 |-----------|------------|
 | C         | `c`        |
-| C++       | `C++`      |
+| C++       | `cpp`      |
 | Shell     | `bash`     |
 | PowerShell| `powershell` |
 | Makefile  | `makefile` |
@@ -162,7 +162,7 @@ Fenced code blocks with language annotation (minimum set):
 | Language  | Tag        |
 |-----------|------------|
 | C         | `c`        |
-| C++       | `C++`      |
+| C++       | `cpp`      |
 | Shell     | `bash`     |
 | PowerShell| `powershell` |
 | Makefile  | `makefile` |
@@ -228,3 +228,11 @@ ls .claude/instructions/02-note-conventions.md 2>/dev/null || echo "not found"
 - 如项目已有 CLAUDE.md，根据用户选择合并追加或覆盖
 - 目录结构表使用通用描述，不绑定具体科目名称
 - 模板项可配置：完整性检查、语言标注列表长度、.gitkeep 维护脚本
+- **instructions 编号**：扫描 `.claude/instructions/` 取下一可用序号，勿硬编码 `02-`（本 vault 已有 `01`–`07`）
+- 完成后建议运行 `/init-git-convention`（若尚无 Git 规范）
+
+## 相关文件
+
+- [02-note-conventions.md](../../instructions/02-note-conventions.md) — 本 vault 权威笔记规范
+- [../init-git-convention/SKILL.md](../init-git-convention/SKILL.md)
+- [../init-win-env/SKILL.md](../init-win-env/SKILL.md)

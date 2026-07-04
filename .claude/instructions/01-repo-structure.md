@@ -78,7 +78,22 @@
 | `picture/` | 图片资源（`cpplogo.png`、`linux_server.png`） |
 | `readme/` | 多语言 README |
 | `待记录专题.md` | 待写专题 backlog（根目录特殊文件，无 `N.` 前缀） |
-| `.claude/` | Claude Code 指令与配置 |
+| `.claude/` | Claude Code 指令与配置（含 `instructions/`、`skills/`、`plan/`） |
+| `.claude/plan/` | Plan 模式产出的计划与思考快照（`.plan.md`） |
+| `.claude/skills/` | 6 个可复用 Skill（见下表） |
+
+**`.claude/skills/` 子目录**：
+
+| Skill | 定位 | 类型 |
+|-------|------|------|
+| `ingest-note` | 知识入库：清洗→落盘→索引 | 日常 |
+| `quick-commit` | 分析 diff→Conventional Commit | 日常 |
+| `squash-commits` | 推送前 squash、清理备份提交 | 日常 |
+| `init-win-env` | Windows Shell/Git 环境探测 | 一次性 |
+| `init-git-convention` | Git 工作流规范注入 | 一次性 |
+| `init-note-vault` | 笔记格式规范初始化 | 一次性 |
+
+索引详见 [`.claude/skills/README.md`](../skills/README.md)。
 | `.cursor/rules/` | Cursor 规则（对齐 Claude Code） |
 
 ## 总体统计
@@ -98,5 +113,6 @@
 
 - `CLAUDE.md` — 项目级 Claude Code 指引
 - `.claude/instructions/05-agent-coordination.md` — 多 Agent 协作
+- `.claude/instructions/07-plan-mode.md` — Plan 模式计划文件
 - `README.md` / `readme/README_EN.md` — 项目介绍
 - `待记录专题.md` — 专题 backlog
