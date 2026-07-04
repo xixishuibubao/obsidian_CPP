@@ -259,10 +259,22 @@ check_m9() {
   done
 }
 
+check_m10() {
+  local f
+  while IFS= read -r f; do
+    [[ -z "$f" || ! -f "$f" ]] && continue
+    [[ "$f" == *README* ]] && continue
+    while IFS= read -r _; do
+      add_issue P1 M10 "表格内 wikilink 别名: $f"
+    done < <(strip_code_blocks < "$f" | grep -nP '^\|[^\n]*\[\[[^|\]]+\|[^\]]+\]\]' 2>/dev/null || true)
+  done < <(note_files | sort -u)
+}
+
 run_checks() {
   set +e
   check_m1
   check_m2
+  check_m10
   if [[ "$MODE" == "full" ]]; then
     check_m3
     check_m5

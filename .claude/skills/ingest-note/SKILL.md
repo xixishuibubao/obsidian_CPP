@@ -54,7 +54,7 @@ description: 将零散原始文本清洗为本 vault 风格 Markdown，A–G 分
 | **文件命名** | 扫描目标目录，取最大序号 +1，格式 `N. 标题.md` |
 | **代码块** | fenced + 小写语言标注（`c` / `cpp` / `bash` / `powershell` / `makefile` / `go` / `python` / `lua` / `java` / `sql` / `plain`） |
 | **双语写作** | 技术术语用英文，解释说明用中文 |
-| **交叉引用** | `[[文件名\|显示文字]]`，跨模块用 vault 相对路径，不写 `.md` 后缀 |
+| **交叉引用** | 表格外：`[[文件名\|显示文字]]`，跨模块用 vault 相对路径，不写 `.md` 后缀；**表格内**见 [02-note-conventions.md](../../instructions/02-note-conventions.md)「Markdown 表格中的 wikilink」 |
 | **YAML frontmatter** | 不使用 |
 | **Tags** | 不使用 Obsidian `#tag` 语法 |
 | **图片引用** | `![描述](picture/xxx.png)`，统一 `.png` 后缀 |
@@ -94,7 +94,7 @@ description: 将零散原始文本清洗为本 vault 风格 Markdown，A–G 分
 
 - **新建文件**：用 `Write` 在目标目录创建 `.md` 文件
 - **扩展现有文件**：用 `Write` / `StrReplace` 追加或插入内容
-- **补 wikilink**：与同模块/跨模块相关笔记互链
+- **补 wikilink**：与同模块/跨模块相关笔记互链；含 Markdown 表格时，单元格内不用 `[[路径\|显示]]`，表格外放 `### 交叉引用`
 - **确保 `.gitkeep`**：目录变更后运行：
   ```powershell
   powershell -File .git\hooks\auto-gitkeep.ps1

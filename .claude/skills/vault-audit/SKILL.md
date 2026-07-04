@@ -25,8 +25,8 @@ bash .claude/skills/vault-audit/scripts/vault-audit.sh full
 
 | 模式 | 命令 | 用途 |
 |------|------|------|
-| `full` | `/vault-audit full` | 首次基线 + 季度全库（M1–M9） |
-| `quick` | `/vault-audit quick` | push 前快检（M1/M2/M3/M9） |
+| `full` | `/vault-audit full` | 首次基线 + 季度全库（M1–M10） |
+| `quick` | `/vault-audit quick` | push 前快检（M1/M2/M3/M9/M10） |
 | `module:<path>` | `/vault-audit module:C-Linux生态/01.Linux环境` | 单模块语义逐篇审查 |
 
 ---
@@ -59,7 +59,7 @@ bash .claude/skills/vault-audit/scripts/vault-audit.sh full --json   # 机器可
 | 级别 | 内容 | 策略 |
 |------|------|------|
 | P0 | M1 断链 wikilink、M2 图片断链 | 必须清零 |
-| P1 | M3 索引、M5/M6 格式、M9 陈旧词表 | 基线阶段尽量清零 |
+| P1 | M3 索引、M5/M6/M10 格式、M9 陈旧词表 | 基线阶段尽量清零 |
 | P2 | M7 序号、M8 孤立 | 结构审计阶段处理 |
 
 修复后重跑 `vault-audit.sh` 验证，更新 report 勾选状态。

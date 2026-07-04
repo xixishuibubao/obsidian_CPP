@@ -14,7 +14,7 @@ English readers see [README_EN.md](readme/README_EN.md).
 
 | 项目 | 规则 |
 |------|------|
-| **笔记引用** | Obsidian wikilink `[[文件名\|显示文字]]` |
+| **笔记引用** | Obsidian wikilink `[[文件名\|显示文字]]`；**表格内**禁止别名 `\|`，见 [02-note-conventions.md](.claude/instructions/02-note-conventions.md) |
 | **标题格式** | `# N.` / `## N.N` 强制编号，`###` 起可选 |
 | **Frontmatter** | 不使用 YAML frontmatter 或 tags |
 | **图片引用** | `![描述](picture/文件名.png)` |

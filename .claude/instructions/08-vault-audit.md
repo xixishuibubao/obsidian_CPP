@@ -12,8 +12,8 @@ bash .claude/skills/vault-audit/scripts/vault-audit.sh [full|quick|module:PATH] 
 
 | 模式 | 检查项 | 用途 |
 |------|--------|------|
-| `full` | M1–M9 | 基线/季度全库 |
-| `quick` | M1/M2/M3/M9 | push 前快检 |
+| `full` | M1–M10 | 基线/季度全库 |
+| `quick` | M1/M2/M3/M9/M10 | push 前快检 |
 | `module:<path>` | M1/M2 + 人工语义 | 单模块逐篇审查 |
 
 ---
@@ -27,6 +27,7 @@ bash .claude/skills/vault-audit/scripts/vault-audit.sh [full|quick|module:PATH] 
 | M3 | 子目录笔记数 vs `01-repo-structure.md` | P1 |
 | M5 | 首行一级标题须为 `# 1.` | P1 |
 | M6 | 无 YAML frontmatter（仅首行 `---`）；开 fence 须带语言 | P1 |
+| M10 | 表格行内 `[[路径\|显示]]` 别名（`|` 与列分隔符冲突） | P1 |
 | M7 | 同目录序号冲突 | P2 |
 | M8 | 孤立笔记（0 入链 0 出链） | P2 |
 | M9 | 陈旧词表（Telescope1126、DriverSO 等） | P1 |

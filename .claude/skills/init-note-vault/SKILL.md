@@ -73,7 +73,7 @@ ls CLAUDE.md 2>/dev/null || echo "not found"
 
 | Item | Rule |
 |------|------|
-| **Note Links** | Obsidian wikilink `[[file\|display text]]` |
+| **Note Links** | Obsidian wikilink `[[file\|display text]]`；表格内禁止 `\|` 别名（见 conventions） |
 | **Title Format** | `# 1.`, `## 1.1`, `### 1.1.1` numbered |
 | **Frontmatter** | No YAML frontmatter or tags |
 | **Code Blocks** | Fenced with language annotation (c, cpp, bash, python, go, sql, ...) |
@@ -103,7 +103,7 @@ ls CLAUDE.md 2>/dev/null || echo "not found"
 |------|------|
 | **Code Blocks** | Fenced with language annotation |
 | **Images** | `![description](path/file.png)` |
-| **Note Links** | `[[file]]` or `[[file|display text]]` recommended |
+| **Note Links** | `[[file]]` or `[[file\|display text]]`（表格外）；表格内见 conventions |
 
 ## Getting Started
 
