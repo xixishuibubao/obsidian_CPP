@@ -32,24 +32,23 @@ Skill 索引见 [`.claude/skills/README.md`](../skills/README.md)。Cursor 无 s
 
 ### 知识库维护链
 
-```
-ingest-note → quick-commit → [vault-audit quick] → squash-commits → push
-```
+维护链、确认协议、脚本优先级见 [skills/README.md §知识库维护链](../skills/README.md#知识库维护链)。
 
-| Skill | 路径 | 等效操作 |
-|-------|------|----------|
-| `/ingest-note` | `.claude/skills/ingest-note/SKILL.md` | 清洗→格式化→A–G 落盘→wikilink→索引/README→删源→06 审查→renormalize→可选 commit |
-| `/quick-commit` | `.claude/skills/quick-commit/SKILL.md` | status/diff/log→手动改动检测→06 审查→renormalize→逐文件 Conventional Commit→确认 commit |
-| `/vault-audit` | `.claude/skills/vault-audit/SKILL.md` | 运行 `skills/vault-audit/scripts/vault-audit.sh`→生成/更新 audit-report→P0/P1 修复→module 语义审查→提示 quick-commit |
-| `/squash-commits` | `.claude/skills/squash-commits/SKILL.md` | 工作区预检→列未推送 commits→备份检测→策略→renormalize→squash→diff 验证 |
+| Skill | 路径 | 等效操作（摘要） |
+|-------|------|------------------|
+| `/ingest-note` | `.claude/skills/ingest-note/SKILL.md` | 清洗→落盘→索引→06 项 1–8→可选 commit |
+| `/quick-commit` | `.claude/skills/quick-commit/SKILL.md` | diff→06 7 项→§B commit |
+| `/vault-audit` | `.claude/skills/vault-audit/SKILL.md` | `vault-audit.py`→报告→修复→quick-commit |
+| `/squash-commits` | `.claude/skills/squash-commits/SKILL.md` | 预检→squash→diff 验证 |
 
 ### 环境初始化链（一次性）
 
-推荐顺序：`init-win-env` → `init-git-convention` → `init-note-vault`
+推荐顺序：`init-win-env` → `probe-toolchain` → `init-git-convention` → `init-note-vault`
 
 | Skill | 路径 | 等效操作 |
 |-------|------|----------|
-| `/init-win-env` | `.claude/skills/init-win-env/SKILL.md` | 探测 bash/git→Shell 规则→04-shell-config→settings 权限 |
+| `/init-win-env` | `.claude/skills/init-win-env/SKILL.md` | Shell 规则→04-shell-config→base 权限（读 toolchain.json） |
+| `/probe-toolchain` | `.claude/skills/probe-toolchain/SKILL.md` | `probe-toolchain.py`→toolchain.json |
 | `/init-git-convention` | `.claude/skills/init-git-convention/SKILL.md` | git 预检→Git 段落→NN-git-workflow.md→settings 权限 |
 | `/init-note-vault` | `.claude/skills/init-note-vault/SKILL.md` | 冲突检测→默认/精简模式→CLAUDE.md + note-conventions |
 

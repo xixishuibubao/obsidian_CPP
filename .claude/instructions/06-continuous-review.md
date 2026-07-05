@@ -10,10 +10,13 @@
 
 每次 `git commit` 前，依序执行以下步骤：
 
-**Step 0 — 换行符统一**（避免仅换行符改动的提交）：
-```bash
-git add --renormalize .
-```
+**Step 0 — 换行符统一**（见下方「Renormalize 策略」）
+
+**Step 0.5 — Git hook 禁令**（全 Skill 通用）：
+
+- 禁止 `git commit --no-verify`，除非用户明确要求
+- hook 拒绝时：修复问题后 **新建 commit**；禁止 `--amend`（除非用户明确要求）
+- 提交失败须展示 hook 输出，不得静默重试
 
 **Step 1 — 完整性检查**：
 ```bash
@@ -66,7 +69,7 @@ grep -rnP '^\x60\x60\x60\s*$' --include='*.md' . | grep -v '\.git/' | grep -v '\
 | # | 检查项 | 规范要求 | 修复方式 |
 |---|--------|----------|----------|
 | 8 | **索引同步** | 改目录笔记数时更新 `01-repo-structure.md` + README | 重算 `find … -name '*.md'` |
-| 9 | **删除/移动** | 删/移笔记后跑 M1 断链扫描 | `bash .claude/skills/vault-audit/scripts/vault-audit.sh quick` |
+| 9 | **删除/移动** | 删/移笔记后跑 M1 断链扫描 | `python .claude/skills/vault-audit/scripts/vault-audit.py quick` |
 | 10 | **陈旧词表** | 正文不含已删专题名（1126/DriverSO 等） | 改通用示例或删引用 |
 | 11 | **语义一致** | 大改技术段落后核对相邻笔记无矛盾 | module 模式语义审查 |
 
@@ -74,6 +77,25 @@ grep -rnP '^\x60\x60\x60\s*$' --include='*.md' . | grep -v '\.git/' | grep -v '\
 - 发现即修复，直接编辑文件
 - 格式/链接/代码块等机械问题 **必须修复** 后方可提交
 - 内容类问题（准确性、交叉引用）评估修复成本，小改直接修、大改记入待办
+
+---
+
+## Renormalize 策略
+
+| 场景 | 命令 |
+|------|------|
+| **commit 前（已 stage）** | `git diff --cached --name-only \| xargs -r git add --renormalize` |
+| **ingest 全量纳入前** | `git add --renormalize .` |
+
+---
+
+## 审查分层（避免重复扫描）
+
+| 阶段 | 执行项 | 说明 |
+|------|--------|------|
+| **ingest-note** | 7 项 + 扩展项 8（索引） | 不跑全库 M1/M9；项 9–11 提示 `/vault-audit quick` |
+| **quick-commit** | 7 项 | 对已 stage 的 `.md` |
+| **vault-audit** | M1–M10（脚本） | 全库/快检唯一机械扫描源 |
 
 ---
 

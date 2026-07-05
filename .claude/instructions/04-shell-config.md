@@ -41,3 +41,9 @@ $env:LC_ALL = 'C.UTF-8'
 Git for Windows 使用 msys2 路径格式：
 - `C:\Users\<用户名>\` 对应 `/c/Users/<用户名>/`
 - 传递给 git filter-branch 的 msg-filter 等参数需要此格式
+
+## 工具链路径
+
+Python / Node / Perl / jq 等 **不假设 PATH**。执行前读 `.claude/toolchain.json`，缺失或过期则运行 `/probe-toolchain`。
+
+细则见 [09-toolchain-config.md](09-toolchain-config.md)。

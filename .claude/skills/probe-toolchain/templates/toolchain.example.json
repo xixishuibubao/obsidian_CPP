@@ -1,0 +1,13 @@
+{
+  "python": "C:\\Users\\you\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "node": "C:\\Program Files\\nodejs\\node.exe",
+  "perl": "C:\\Strawberry\\perl\\bin\\perl.exe",
+  "bash": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "git": "C:\\Program Files\\Git\\cmd\\git.exe",
+  "jq": "C:\\Program Files\\Git\\usr\\bin\\jq.exe",
+  "prefer": {
+    "python": "3.12",
+    "node": "20",
+    "perl": "5.38"
+  }
+}

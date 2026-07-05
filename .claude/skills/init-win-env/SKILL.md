@@ -1,6 +1,7 @@
 ---
 name: init-win-env
-description: Windows 环境初始化 — 探测本机 Git Bash/PowerShell 路径，生成 Shell 终端规则与权限预设
+description: Initializes Windows terminal environment by detecting Git Bash/PowerShell paths and generating shell rules. Use when setting up a new machine, fixing terminal issues, or invoking /init-win-env.
+disable-model-invocation: true
 ---
 
 # /init-win-env — Windows Claude Code 环境初始化
@@ -17,14 +18,17 @@ description: Windows 环境初始化 — 探测本机 Git Bash/PowerShell 路径
 
 ### 1. 环境探测
 
-依次执行以下探测命令（按优先级，成功后跳过后续）：
+**优先**读取 `.claude/toolchain.json`（若存在且 `generated_at` ≤ 7 天）：取 `tools.git.selected.path`、`tools.bash.selected.path` 用于验证与展示。
 
-| 探测项 | 命令 | 回退策略 | 失败引导 |
-|--------|------|----------|----------|
-| Git Bash 路径 | `where bash` / `(Get-Command bash -ErrorAction SilentlyContinue).Source` | 检查 `$env:ProgramFiles\Git\bin\bash.exe`、`"$env:LOCALAPPDATA\Programs\Git\bin\bash.exe"` | 引导: "未找到 Git Bash。请从 https://git-scm.com/download/win 下载安装，安装时勾选 'Git Bash Here' 选项" |
-| Git 路径 | `where git` / `(Get-Command git -ErrorAction SilentlyContinue).Source` | 检查 `$env:ProgramFiles\Git\cmd\git.exe` | 引导: "未找到 git。请检查是否已安装 Git for Windows: https://git-scm.com/download/win。如已安装，可能是 PATH 未配置，请手动添加: `$env:Path += ';C:\Program Files\Git\cmd'`" |
-| 系统语言 | `(Get-Culture).Name` | — | — |
-| Shell 可用性 | 尝试执行 `bash -c "echo ok"` 看是否返回 `ok` 且无乱码 | — | 失败: "bash 路径可用但执行返回异常，请检查是否有安全软件拦截" |
+否则运行 `/probe-toolchain`（`python .claude/skills/probe-toolchain/scripts/probe-toolchain.py`），或最小探测：
+
+| 探测项 | 命令 | 失败引导 |
+|--------|------|----------|
+| Git | `git --version` | 安装 [Git for Windows](https://git-scm.com/download/win) |
+| Bash | `bash -c "echo ok"` | 检查 Git 安装目录下 `bin/bash.exe` |
+| 系统语言 | `(Get-Culture).Name`（CJK 时写入 UTF-8 规则） | — |
+
+探测失败时给出精确下载链接 + PATH 修复命令，不硬编码路径。
 
 ### 2. 生成配置
 
@@ -39,48 +43,7 @@ description: Windows 环境初始化 — 探测本机 Git Bash/PowerShell 路径
 
 完整 Shell 策略（任务分类、Python 兜底等）仅写入 `04-shell-config.md`，勿重复膨胀 CLAUDE.md。
 
-以下为 **通用模板**（非本 vault 默认），供无 `04-shell-config.md` 的新项目选用：
-
-```markdown
-## Shell & Terminal
-
-- **通用原则**: 优先使用当前会话已激活的终端环境，避免环境切换开销
-
-- **搜索/过滤类任务**（日志分析、文件内容查找、正则匹配）:
-  - Unix-like 环境：`bash` + `grep`/`sed`/`awk`
-  - Windows 环境：`PowerShell` + `Select-String`（性能相当）
-
-- **文件系统操作**（遍历、状态查询、批量移动）:
-  - 使用 Shell 内置命令而非外部程序（如 `**/*.log` 通配符替代 `find`）
-  - 涉及大量文件（千级以上）时优先 `find -exec` 而非管道
-
-- **复杂逻辑/API 调用/JSON 处理**:
-  - 超过 3 层管道、需浮点运算、数组操作、JSON 处理时，优先 Python/Node.js 脚本
-  - 避免 shell 字符串拼接的脆弱性
-
-- **性能可观测性**: 预期超 3 秒的操作，执行前输出 `[Using: bash/zsh/pwsh/python]`
-
-- **回退机制**: 首选终端失败且含 `syntax error` / `command not found` 时，自动降级 `bash -c "..."`，再失败则 Python 兜底
-
-- **UTF-8 编码**: 处理中文等内容时设置 `LC_ALL=C.UTF-8` 或 `LC_ALL=en_US.UTF-8` 避免 git 输出乱码
-
-### Known Issues
-
-- Git Bash 路径: `{detected_bash_path}`
-- PowerShell 的 `git log` 在中文 Windows 上可能乱码，可用 `git cat-file -p` 或编辑器验证
-- Git for Windows 使用 msys2 路径格式: `C:\Users\{user}\` 对应 `/c/Users/{user}/`
-
-## CLAUDE.md 自身管理
-
-- 根文件保持在 **100–130 行**以内（本 vault），超出则拆分到 `.claude/instructions/`
-- 子文件同样控制在 200 行以内，超出则递归拆分（如 `01-linux-env.md` → `01-linux-env-basics.md` + `01-linux-env-advanced.md`）
-- 根文件通过 `- [标题](.claude/instructions/XX-name.md) — 描述` 引用所有子文件
-- 生成此规则的脚本见 `init-win-env` skill，重建规则可重新执行该 skill
-```
-
-其中 `{detected_bash_path}` 和 `{user}` 用探测到的实际值替换。
-
-仅当系统语言为 `zh-*`、`ja-*`、`ko-*` 等 CJK 语言时写入 UTF-8 编码处理规则和 Known Issues。非 CJK 语言机器只写入 Shell 终端选择策略。
+通用模板（非本 vault 默认）见 [reference.md](reference.md) §Shell 模板。
 
 ### 3. 生成 .claude/settings.json（通用权限预设）
 
@@ -135,6 +98,8 @@ git --version
   Shell 验证:
     bash -c "echo ok" → ok    ✓
     git --version      → 正常  ✓
+
+> 环境就绪。建议下一步：运行 `/probe-toolchain` 探测 Python/Node/Perl 等工具链。
 ```
 
 ## 使用时机
@@ -155,7 +120,10 @@ git --version
 ## 相关文件
 
 - [04-shell-config.md](../../instructions/04-shell-config.md)
+- [../probe-toolchain/SKILL.md](../probe-toolchain/SKILL.md)
 - [../init-git-convention/SKILL.md](../init-git-convention/SKILL.md)
 - [../init-note-vault/SKILL.md](../init-note-vault/SKILL.md)
 
-**Bootstrap 顺序**：`init-win-env` → `init-git-convention` → `init-note-vault`
+**Bootstrap 顺序**：`init-win-env` → `probe-toolchain` → `init-git-convention` → `init-note-vault`
+
+**Cursor**：见 [README §Cursor 等效调用](../README.md#cursor-等效调用全-skill-通用)

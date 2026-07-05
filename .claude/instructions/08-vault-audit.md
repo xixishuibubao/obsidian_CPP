@@ -6,8 +6,12 @@
 
 ## 脚本位置（Skill 自包含）
 
+脚本优先级：**Python > Bash > PowerShell**。主逻辑在 `vault-audit.py`。
+
 ```bash
-bash .claude/skills/vault-audit/scripts/vault-audit.sh [full|quick|module:PATH] [--json]
+python .claude/skills/vault-audit/scripts/vault-audit.py full          # 或 quick / module:PATH
+python .claude/skills/vault-audit/scripts/vault-audit.py quick --json
+bash .claude/skills/vault-audit/scripts/vault-audit.sh full           # 包装：优先调 python
 ```
 
 | 模式 | 检查项 | 用途 |
@@ -32,7 +36,7 @@ bash .claude/skills/vault-audit/scripts/vault-audit.sh [full|quick|module:PATH] 
 | M8 | 孤立笔记（0 入链 0 出链） | P2 |
 | M9 | 陈旧词表（Telescope1126、DriverSO 等） | P1 |
 
-陈旧词表维护于 `skills/vault-audit/scripts/vault-audit.sh` 内 `STALE_KEYWORDS` 数组。
+陈旧词表维护于 `skills/vault-audit/scripts/vault-audit.py` 内 `STALE_KEYWORDS` 列表。
 
 ---
 
@@ -57,12 +61,4 @@ bash .claude/skills/vault-audit/scripts/vault-audit.sh [full|quick|module:PATH] 
 
 ## 维护链
 
-```
-ingest-note → quick-commit → [vault-audit quick] → squash-commits → push
-```
-
-- **ingest-note**：落盘前 M7；入库后更新索引
-- **vault-audit quick**：push 前约 1 分钟
-- **vault-audit full**：季度或重大目录变更后
-
-详见 [05-agent-coordination.md](05-agent-coordination.md)、[06-continuous-review.md](06-continuous-review.md) 第 8–11 项。
+见 [skills/README.md §知识库维护链](../skills/README.md#知识库维护链)。vault-audit 位于 quick-commit 之后、push 之前。

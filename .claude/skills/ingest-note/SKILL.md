@@ -1,6 +1,7 @@
 ---
 name: ingest-note
-description: 将零散原始文本清洗为本 vault 风格 Markdown，A–G 分类落盘、补 wikilink、更新索引。Use when 整理/入库笔记、/ingest-note、处理 raw 文件
+description: Cleans raw text into vault-style Markdown with A–G placement, wikilinks, and index updates. Use when ingesting notes, processing raw files, or the user invokes /ingest-note.
+disable-model-invocation: true
 ---
 
 # /ingest-note — 笔记摄入与格式化
@@ -41,28 +42,12 @@ description: 将零散原始文本清洗为本 vault 风格 Markdown，A–G 分
 
 ### 3. 格式化（项目规范适配）
 
-将每个逻辑块按照 [02-note-conventions.md](../../instructions/02-note-conventions.md) 格式化：
+将每个逻辑块按 [02-note-conventions.md](../../instructions/02-note-conventions.md) 格式化。
 
-```
-# N. 标题                     ← 内部标题从 # 1. 起始
-## N.M 二级标题
-```
+**本 Skill 额外要求**：
 
-| 规范 | 规则 |
-|------|------|
-| **标题编号** | `# N.` / `## N.M` / `### N.M.O`，文件内从 `# 1.` 开始 |
-| **文件命名** | 扫描目标目录，取最大序号 +1，格式 `N. 标题.md` |
-| **代码块** | fenced + 小写语言标注（`c` / `cpp` / `bash` / `powershell` / `makefile` / `go` / `python` / `lua` / `java` / `sql` / `plain`） |
-| **双语写作** | 技术术语用英文，解释说明用中文 |
-| **交叉引用** | 表格外：`[[文件名\|显示文字]]`，跨模块用 vault 相对路径，不写 `.md` 后缀；**表格内**见 [02-note-conventions.md](../../instructions/02-note-conventions.md)「Markdown 表格中的 wikilink」 |
-| **YAML frontmatter** | 不使用 |
-| **Tags** | 不使用 Obsidian `#tag` 语法 |
-| **图片引用** | `![描述](picture/xxx.png)`，统一 `.png` 后缀 |
-
-**新建笔记默认**采用「单文件双分区」格式（同一 `.md` 内）；用户明确选择「仅提纲/仅详情」时可在方案中标注例外：
-
-- `## 【核心精简提纲】` — 要点、清单、结论
-- `## 【完整拓展详情】` — 原理、案例、踩坑、wikilink
+- 新建默认「单文件双分区」：`## 【核心精简提纲】` + `## 【完整拓展详情】`
+- 文件命名：扫描目标目录，取最大序号 +1，格式 `N. 标题.md`；文件内标题从 `# 1.` 起始
 
 ### 4. 方案展示与用户确认
 
@@ -99,7 +84,11 @@ description: 将零散原始文本清洗为本 vault 风格 Markdown，A–G 分
   ```powershell
   powershell -File .git\hooks\auto-gitkeep.ps1
   ```
-  脚本不存在时按 [CLAUDE.md](../../CLAUDE.md) Maintain Directories 内联 PowerShell 命令回退- **图片引用**：如果内容中引用了图片但 `picture/` 下无对应文件，提示用户
+  脚本不存在时按 [CLAUDE.md](../../CLAUDE.md) Maintain Directories 内联 PowerShell 命令回退：
+  ```powershell
+  Get-ChildItem -Directory -Recurse | Where-Object { (Get-ChildItem $_.FullName -File -Exclude '.gitkeep').Count -eq 0 } | ForEach-Object { New-Item -ItemType File -Path (Join-Path $_.FullName '.gitkeep') -Force }
+  ```
+- **图片引用**：如果内容中引用了图片但 `picture/` 下无对应文件，提示用户
 
 ### 6. 更新索引文件
 
@@ -124,55 +113,23 @@ description: 将零散原始文本清洗为本 vault 风格 Markdown，A–G 分
 
 ### 8. 提交前自检与 Git 提交
 
-commit 前依 [06-continuous-review.md](../../instructions/06-continuous-review.md) 对变更 `.md` 做 7 项审查（标题、frontmatter/tag、代码块标注、wikilink、双语、交叉引用、图片路径），并运行：
-
-```bash
-git add --renormalize .
-```
+commit 前对变更 `.md` 执行 [06-continuous-review.md](../../instructions/06-continuous-review.md) **7 项 + 扩展项 8（索引）**；项 9–11 提示用户运行 `/vault-audit quick`。Renormalize 与 hook 禁令见 06 §Renormalize / §Git hook 禁令。
 
 **Git commit 仅在你明确要求时执行**（否则停在「文件已写入、待提交」状态）。
 
 未在本 Skill 内提交时，结束语须包含：
 
-> 笔记与索引已写入。运行 `/quick-commit` 可分析全部改动（含 `git rm` 的源文件删除）并生成逐文件详细 commit message。
-
-**不要**只 stage 部分文件后结束；要么用户明确要求时完整 `git add` + commit，要么全部留给 `/quick-commit`。
-
-用户要求提交时，先 `git add` 纳入变更，再：
-
-```bash
-git add --renormalize .
-```
+> 笔记与索引已写入。运行 `/quick-commit` 可分析全部改动并生成逐文件详细 commit message。
 
 #### commit 策略
 
 | 情况 | 策略 |
 |------|------|
 | 用户未要求提交 | 不 commit，提示 `/quick-commit` |
-| 用户要求提交且改动集中 | 1 次 commit（可扼要 1 行，或展开 bullet） |
-| 用户要求提交且改动跨多目录 | **推荐** `/quick-commit` 生成逐文件详细 log；勿自动多次 commit |
-#### commit message 格式
+| 用户要求提交且 ≥2 文件或跨目录 | 转 `/quick-commit` 或 [03 §B](../../instructions/03-git-workflow.md) |
+| 用户要求提交且改动集中 | 1 次 commit（§A 一行或 §B bullet） |
 
-```
-type(scope): 本次改动的核心内容
-
-- 具体变更项列表（每个文件一行）
-  ...
-```
-
-- **type**: `docs`（笔记内容类），`feat`（实质知识新增）
-- **scope**: 受影响的主要目录缩写（`c-lang`, `C++`, `linux`, `E-AI`, `vault` 等）
-- **description**: 简述本次**实际改动**（新增/拓展/修改/删除），不提及"拆分/清洗/摄入"过程
-- **列表项**：每个文件一行，用项目符号列出具体操作
-
-示例：
-```
-docs(C-Linux): 新增「网络工具」笔记，拓展「常用指令」curl 章节
-
-- 新建 01.Linux环境/6. 网络工具.md 覆盖 curl/wget/ss/iperf 用法
-- 扩展 01.Linux环境/8. 常用指令.md 追加 tcpdump 段落
-- 删除已处理的源文件 raw/foo.md
-```
+Commit 格式见 [03-git-workflow.md](../../instructions/03-git-workflow.md) §A/§B；勿在 log 中写「拆分/清洗/摄入」过程。
 
 ---
 
@@ -181,12 +138,12 @@ docs(C-Linux): 新增「网络工具」笔记，拓展「常用指令」curl 章
 | 场景 | 处理方式 |
 |------|----------|
 | 输入内容为空 | 提示用户并退出 |
-| 内容与现有所有笔记无关 | 写入 audit-report「未决项」，或与用户确认新建子目录 |
+| 内容与现有所有笔记无关 | 写入 `.claude/plan/*-vault-audit-report.md`「未决项」，或与用户确认新建子目录 |
 | 内容全是代码无说明 | 按"代码片段"格式整理，加标题 + 中文注释解释用途 |
 | 目标目录不存在 | 按项目规范创建目录，写入 `.gitkeep` |
 | 新建文件数字冲突 | 扫描目标目录 `.md` 文件，取最大数字序号 +1 作为新文件序号 |
 | 内容非常长（>200 行） | 考虑按子主题拆分为多篇笔记，在方案中说明 |
-| 主题太大、一次写不完 | 先写双分区提纲区，详情区分批补充；或记入 audit-report「未决项」 |
+| 主题太大、一次写不完 | 先写双分区提纲区，详情区分批补充；或记入 `.claude/plan/*-vault-audit-report.md`「未决项」 |
 | 有配图但未提供 | 先留 `![描述](picture/xxx.png)` 占位并提示用户补图 |
 | 源文件部分内容未处理 | 保留源文件，在方案中说明哪些内容未被摄入及原因，询问用户是否仍要删除 |
 
@@ -205,7 +162,7 @@ docs(C-Linux): 新增「网络工具」笔记，拓展「常用指令」curl 章
 3. **跨目录操作时先综览再动手** — 先读取 README 和目录结构再制定方案
 4. **Commit 前展示方案** — 必须让用户确认后再执行，不静默操作
 5. **使用项目规定的 shell 策略** — 优先 Git Bash，中文乱码时回退 PowerShell 并设 `LC_ALL=C.UTF-8`
-6. **Plan 模式落盘** — Plan 模式下必须按 [07-plan-mode.md](../../instructions/07-plan-mode.md) 写入 `.claude/plan/`；非 Plan 模式的复杂摄入可选手写计划快照
+6. **Plan 模式落盘** — 见 [07-plan-mode.md](../../instructions/07-plan-mode.md)
 
 ## 工作流衔接
 
@@ -213,6 +170,8 @@ docs(C-Linux): 新增「网络工具」笔记，拓展「常用指令」curl 章
 |------|-------|
 | 下一步（默认） | [/quick-commit](../quick-commit/SKILL.md) — 分析全部改动并提交 |
 | 推送前 | [/squash-commits](../squash-commits/SKILL.md) — 合并多次中间态 commit |
+
+**Cursor**：见 [README §Cursor 等效调用](../README.md#cursor-等效调用全-skill-通用)
 
 ## 相关文件
 

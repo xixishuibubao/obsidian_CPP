@@ -21,6 +21,7 @@ English readers see [README_EN.md](readme/README_EN.md).
 | **编码** | 中文内容优先 Bash，乱码时回退 PowerShell 并设 `LC_ALL=C.UTF-8` |
 | **空目录占位** | 使用 `.gitkeep` 文件占位 |
 | **Plan 模式计划** | 写入 `.claude/plan/`，命名 `YYYY-MM-DD-主题.plan.md` |
+| **工具链** | 运行脚本前读 `.claude/toolchain.json`；缺失则 `/probe-toolchain`，见 [09-toolchain-config.md](.claude/instructions/09-toolchain-config.md) |
 
 ## Common Workflows
 
@@ -137,6 +138,7 @@ powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 - [02-note-conventions.md](.claude/instructions/02-note-conventions.md) — 笔记内容规范、wikilink、标题编号、代码块
 - [03-git-workflow.md](.claude/instructions/03-git-workflow.md) — Git 工作流、commit 格式、squash 策略
 - [04-shell-config.md](.claude/instructions/04-shell-config.md) — Shell 终端配置与编码处理
+- [09-toolchain-config.md](.claude/instructions/09-toolchain-config.md) — 工具链探测与 pin（Python/Node/Perl 等）
 - [05-agent-coordination.md](.claude/instructions/05-agent-coordination.md) — 多 Agent 协作（Claude Code 为主）
 - [07-plan-mode.md](.claude/instructions/07-plan-mode.md) — Plan 模式计划文件存放与命名
 - `~/.claude/CLAUDE.md` — 全局 CLAUDE.md
