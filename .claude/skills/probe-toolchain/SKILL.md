@@ -10,7 +10,7 @@ disable-model-invocation: true
 
 ## 脚本（Python 优先）
 
-优先级：**python > bash > powershell**
+优先级：**Python > Bash > PowerShell**
 
 ```bash
 python .claude/skills/probe-toolchain/scripts/probe-toolchain.py

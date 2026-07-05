@@ -22,6 +22,7 @@ English readers see [README_EN.md](readme/README_EN.md).
 | **空目录占位** | 使用 `.gitkeep` 文件占位 |
 | **Plan 模式计划** | 写入 `.claude/plan/`，命名 `YYYY-MM-DD-主题.plan.md` |
 | **工具链** | 运行脚本前读 `.claude/toolchain.json`；缺失则 `/probe-toolchain`，见 [09-toolchain-config.md](.claude/instructions/09-toolchain-config.md) |
+| **脚本优先级** | **Python > Bash > PowerShell**，主逻辑在 `.py`，`.sh`/`.ps1` 为薄包装；见 [skills/README.md](.claude/skills/README.md) |
 
 ## Common Workflows
 

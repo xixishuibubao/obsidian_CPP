@@ -3,7 +3,7 @@
 路径：`.claude/skills/<name>/SKILL.md`（可选 `scripts/`、`templates/`、`reference.md`）。Claude Code 用 `/name` 调用。
 
 > **自包含**：脚本与 Skill 文档同目录，不单独放在 `.claude/scripts/`。
-> **脚本优先级**（可实现时）：**Python > Bash > PowerShell > CMD**；主逻辑在 `.py`，`.sh`/`.ps1` 为薄包装。
+> **脚本优先级**（可实现时）：**Python > Bash > PowerShell**；主逻辑在 `.py`，`.sh`/`.ps1` 为薄包装。
 
 ## Cursor 等效调用（全 Skill 通用）
 
