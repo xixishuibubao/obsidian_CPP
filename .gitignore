@@ -50,3 +50,6 @@ desktop.ini
 # 编辑器临时文件（比如 VS Code 临时文件）
 .vscode/
 *.code-workspace
+
+# Claude Code Agent worktrees（自动生成，无需版本控制）
+.claude/worktrees/
