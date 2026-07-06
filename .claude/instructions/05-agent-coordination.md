@@ -67,4 +67,4 @@ Skill 索引见 [`.claude/skills/README.md`](../skills/README.md)。Cursor 无 s
 - [07-plan-mode.md](07-plan-mode.md)
 - [.claude/skills/README.md](../skills/README.md)
 - `.cursor/rules/claude-code-primary.mdc`
-- 关于 Claude Code Team 模式（多 Agent 团队成员协作）参见 [[E-AI与Agent协同开发/03.工具与配置/3. Claude Code Team 模式协作指南|Team 模式协作指南]]
+- 关于 Claude Code Team 模式（多 Agent 团队成员协作）参见 [[E-AI与Agent协同开发/03.工具与配置/2. Claude Code Team 模式协作指南|Team 模式协作指南]]
