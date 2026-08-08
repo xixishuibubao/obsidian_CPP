@@ -8,8 +8,17 @@ modify.md
 #!.obsidian/templates/
 !.obsidian/community-plugins.json
 !.obsidian/core-plugins.json
-!.obsidian/plugins/obsidian-git/*  # 保留 Git 插件配置
-!.obsidian/themes/**/*  # 保留主题配置
+# 先放开 plugins 目录，再按插件白名单纳入（否则子路径无法 add）
+!.obsidian/plugins/
+.obsidian/plugins/*
+!.obsidian/plugins/obsidian-git/
+!.obsidian/plugins/obsidian-git/**
+!.obsidian/plugins/obsidian-plantuml/
+!.obsidian/plugins/obsidian-plantuml/**
+!.obsidian/plugins/obsidian-graphviz/
+!.obsidian/plugins/obsidian-graphviz/**
+!.obsidian/themes/
+!.obsidian/themes/**/*
 
 # ==============================================
 # 自定义忽略文件夹（根据自己的文件夹名修改）
