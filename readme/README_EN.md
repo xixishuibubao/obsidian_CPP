@@ -76,13 +76,9 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   └── 4. 分支策略.md          # Branching strategies
 ├── 📁 G-语言与标记/            # Languages & markup
 │   ├── 1. Markdown.md         # Markdown syntax
-│   ├── 2. CSS.md              # CSS styles
-│   ├── 3. XML.md              # XML basics
-│   ├── 4. PlantUML学习资料.md  # PlantUML resources
-│   ├── 5. UML语法.md          # UML class diagram syntax
-│   ├── 6. 常用英语.md          # Programming English vocab
-│   ├── 7. INI语法.md          # INI config syntax
-│   └── 8. YAML语法.md         # YAML config syntax
+│   ├── 2. INI语法.md          # INI config syntax
+│   ├── 3. YAML语法.md         # YAML config syntax
+│   └── 4. DOT与PlantUML绘图.md # Graphviz DOT + PlantUML diagrams
 ├── 📁 picture/
 ├── 📁 readme/
 ├── 📁 .claude/

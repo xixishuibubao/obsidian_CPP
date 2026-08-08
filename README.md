@@ -77,13 +77,9 @@
 │   └── 4. 分支策略.md          # 分支模型对比
 ├── 📁 G-语言与标记/            # 标记语言与常用参考
 │   ├── 1. Markdown.md         # Markdown 语法
-│   ├── 2. CSS.md              # CSS 样式表
-│   ├── 3. XML.md              # XML 基础
-│   ├── 4. PlantUML学习资料.md  # PlantUML 学习路径
-│   ├── 5. UML语法.md          # UML 类图语法
-│   ├── 6. 常用英语.md          # 编程英语词汇
-│   ├── 7. INI语法.md          # INI 配置语法
-│   └── 8. YAML语法.md         # YAML 配置语法
+│   ├── 2. INI语法.md          # INI 配置语法
+│   ├── 3. YAML语法.md         # YAML 配置语法
+│   └── 4. DOT与PlantUML绘图.md # Graphviz DOT + PlantUML 绘图
 ├── 📁 picture/                  # 图片资源
 ├── 📁 readme/                   # 多语言 README
 ├── 📁 .claude/                  # Claude Code 配置
