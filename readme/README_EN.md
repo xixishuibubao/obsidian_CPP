@@ -31,7 +31,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🖥️ **C/C++** | 🐧 **Linux Env** | ⚙️ **Architecture** |
 |:---:|:---:|:---:|
-| Grammar · Standards · Templates · More Effective C++ | Commands · g++/gdb · Makefile · Kernel | ARM32/64 · X86 · Memory Model |
+| Grammar · Standards · Templates · More Effective C++ | Commands · g++/gdb · Makefile · Kernel · Tailscale+SSH | ARM32/64 · X86 · Memory Model |
 
 | 🛠️ **Dev Tools & Build** | 🌐 **Networking** | 📱 **Embedded MCU** |
 |:---:|:---:|:---:|
@@ -53,7 +53,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts · linker scripts
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++↔Python
 ├── 📁 C-Linux生态/             # Linux ecosystem
-│   ├── 📁 01.Linux环境/        # commands · dynamic libs · rpath · dlopen · grep
+│   ├── 📁 01.Linux环境/        # commands · dynamic libs · rpath · dlopen · grep · NFS · Tailscale+SSH
 │   ├── 📁 02.Linux系统编程/     # processes · kernel · drivers · IPC
 │   ├── 📁 03.Linux开发/        # RK3588 · cross-compilation · build systems · Buildroot · Rockchip partitions
 │   ├── 📁 04.调试与优化/       # gdb · perf · Valgrind · etc. (10 notes)

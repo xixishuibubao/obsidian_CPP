@@ -32,7 +32,7 @@
 
 | 🖥️ **C/C++** | 🐧 **Linux 环境** | ⚙️ **体系架构** |
 |:---:|:---:|:---:|
-| 语法基础 · 代码规范 · 模板 · More Effective C++ | 常用指令 · g++/gdb · Makefile · 内核模块 | ARM32/64 · X86 汇编 · 内存模型 |
+| 语法基础 · 代码规范 · 模板 · More Effective C++ | 常用指令 · g++/gdb · Makefile · 内核模块 · Tailscale+SSH | ARM32/64 · X86 汇编 · 内存模型 |
 
 | 🛠️ **开发工具与构建** | 🌐 **网络编程** | 📱 **MCU 嵌入式** |
 |:---:|:---:|:---:|
@@ -54,7 +54,7 @@
 │   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · 编译脚本 · 链接脚本
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++与Python互调用
 ├── 📁 C-Linux生态/             # Linux 全栈
-│   ├── 📁 01.Linux环境/        # 常用指令 · 动态库 · rpath · 加载与劫持 · grep · 目录结构 · 启动流程
+│   ├── 📁 01.Linux环境/        # 常用指令 · 动态库 · rpath · 加载与劫持 · grep · 目录结构 · 启动流程 · NFS · Tailscale+SSH
 │   ├── 📁 02.Linux系统编程/     # 进程 · 内核 · 驱动 · IPC · dup · popen
 │   ├── 📁 03.Linux开发/        # RK3588 · 交叉编译 · 容器化与系统构建 · Buildroot · Rockchip 分区
 │   ├── 📁 04.调试与优化/       # gdb · coredump · perf · Valgrind · CPU 排查等（10 篇）
