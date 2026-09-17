@@ -31,7 +31,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🖥️ **C/C++** | 🐧 **Linux Env** | ⚙️ **Architecture** |
 |:---:|:---:|:---:|
-| Grammar · Standards · Templates · More Effective C++ | Commands · g++/gdb · Makefile · Kernel · Tailscale+SSH | ARM32/64 · X86 · Memory Model |
+| Grammar · Standards · Templates · More Effective C++ · API Design | Commands · g++/gdb · Makefile · Kernel · Tailscale+SSH | ARM32/64 · X86 · Memory Model |
 
 | 🛠️ **Dev Tools & Build** | 🌐 **Networking** | 📱 **Embedded MCU** |
 |:---:|:---:|:---:|
@@ -39,7 +39,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🤖 **AI-Assisted Dev** | 📝 **Book Notes** | 🎯 **More Topics** |
 |:---:|:---:|:---:|
-| Paradigm Evolution · Vibecoding · Workflows | C++ Best Practices · Open Source | GC · Profiling (10) · Architecture (5) · Linux Dev (5) |
+| Paradigm Evolution · Vibecoding · Workflows | C++ Best Practices · API Design for C++ · Open Source | GC · Profiling (10) · Architecture (5) · Linux Dev (5) |
 
 ## 📂 Directory Layout
 
@@ -47,7 +47,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 📦 obsidian_files
 ├── 📁 A-编程语言/              # Languages
 │   ├── 📁 01.C语言/           # C · low-level · system programming
-│   ├── 📁 02.C++/             # C++ syntax · standards · templates · More Effective C++
+│   ├── 📁 02.C++/             # C++ syntax · standards · templates · More Effective C++ · API Design
 │   └── 📁 03.Golang/          # Go basics
 ├── 📁 B-构建与脚本/            # Build & scripting
 │   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts · linker scripts
