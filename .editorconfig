@@ -1,0 +1,14 @@
+# 与 .gitattributes 一致：工作区文本统一 LF，避免 Cursor/VS Code 在 Windows 上写成 CRLF。
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+
+[*.{md,mdc,txt,json,js,css,py,sh,ps1,yml,yaml,svg}]
+end_of_line = lf
+
+[*.{png,jpg,jpeg,gif,webp,ico}]
+end_of_line = unset
+insert_final_newline = unset

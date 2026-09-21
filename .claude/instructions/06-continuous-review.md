@@ -87,6 +87,8 @@ grep -rnP '^\x60\x60\x60\s*$' --include='*.md' . | grep -v '\.git/' | grep -v '\
 | **commit 前（已 stage）** | `git diff --cached --name-only \| xargs -r git add --renormalize` |
 | **ingest 全量纳入前** | `git add --renormalize .` |
 
+按 `.gitattributes`（本仓库 `eol=lf`）校准，不是把 LF 转成 CRLF。Obsidian 打开即全库 dirty 的处理见 [03-git-workflow.md](03-git-workflow.md)「换行符策略」。
+
 ---
 
 ## 审查分层（避免重复扫描）

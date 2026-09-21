@@ -1,0 +1,24 @@
+# Obsidian 始终按 LF 写盘。Windows 默认 core.autocrlf=true 会把工作区检出成 CRLF，
+# 仅打开 vault 就会被 Obsidian 改回 LF，Git 把全部文本标成已修改。
+# 本文件强制文本以 LF 入库、以 LF 检出，覆盖本机 autocrlf。
+* text=auto eol=lf
+
+*.md text eol=lf
+*.txt text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.mdc text eol=lf
+*.svg text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary

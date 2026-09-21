@@ -114,7 +114,7 @@ grep -roP '\!\[.*?\]\(picture/[^)]+\)' . --include='*.md' | grep -v '\.git/'
 
 ### 🔧 维护
 ```bash
-git add --renormalize .                           # 批量修复 LF → CRLF
+git add --renormalize .                           # 按 .gitattributes 统一为 LF
 powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 ```
 
@@ -129,7 +129,7 @@ powershell .git\hooks\auto-gitkeep.ps1            # 更新 .gitkeep
 3. **笔记使用标准 Markdown**，无 YAML frontmatter，无 tags
 4. **终端优先用 Bash**，中文乱码时回退 PowerShell
 5. **目录变更后运行 `.gitkeep` hook**
-6. **commit 前必须统一换行符** — 运行 `git add --renormalize .` 使 CRLF/LF 与 `.gitattributes` 一致，避免仅换行符改动的提交
+6. **commit 前必须统一换行符** — 文本为 LF（见 `.gitattributes`）；运行 `git add --renormalize .`，避免仅换行符改动的提交
 7. **本文件保持简洁**（100~130 行），接近上限时拆分至 `.claude/instructions/` 子文件
 8. **Plan 模式计划落盘 `.claude/plan/`** — Agent 在 Plan 模式产出的思考与计划必须写入 `.claude/plan/`（命名 `YYYY-MM-DD-主题.plan.md`），不得写入 `.cursor/plans/` 或 vault 外路径；执行完毕后保留供追溯，细则见 `07-plan-mode.md`
 

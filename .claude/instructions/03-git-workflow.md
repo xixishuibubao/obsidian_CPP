@@ -113,6 +113,21 @@ git rebase -i HEAD~N
 
 忽略大文件（`.mp4`, `.pdf`, `.zip` 等）和编辑器临时文件。
 
+## 换行符策略
+
+本 vault 文本统一 **LF**（`.gitattributes` 的 `eol=lf` + `.editorconfig`）。不要用 Windows 默认的 `core.autocrlf=true` 把工作区检出成 CRLF。
+
+根因：Obsidian 始终按 LF 写盘。若工作区是 CRLF，仅打开仓库/笔记就会被改回 LF，`git status` 出现大量「已修改」、`git diff` 却几乎为空。
+
+| 项 | 约定 |
+|----|------|
+| 仓库内 / 工作区 | 文本均为 LF |
+| `.gitattributes` | `* text=auto eol=lf`（覆盖本机 autocrlf） |
+| 本仓库本地配置 | `git config --local core.autocrlf false` |
+| 新克隆后 | 若 Windows 仍检出 CRLF，执行上一行后再 `git restore .` |
+
+`git add --renormalize .` 只按 `.gitattributes` 校准已跟踪文件，**不是**把 LF 转成 CRLF。
+
 ## 空目录追踪
 
 通过 `.gitkeep` 文件追踪空目录：
