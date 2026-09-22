@@ -36,7 +36,7 @@
 
 | 🛠️ **开发工具与构建** | 🌐 **网络编程** | 📱 **MCU 嵌入式** |
 |:---:|:---:|:---:|
-| CLion · VS2022 · CMake 入门/进阶 | Muduo 网络库 · IO 模型 | Boot-App 模式 · UART 内存注入 |
+| CLion · VS2022 · CMake 入门/进阶/配置渲染 | Muduo 网络库 · IO 模型 | Boot-App 模式 · UART 内存注入 |
 
 | 🤖 **AI 辅助开发** | 📝 **读书笔记** | 🎯 **更多专题** |
 |:---:|:---:|:---:|
@@ -51,7 +51,7 @@
 │   ├── 📁 02.C++/             # C++ 语法 · 代码规范 · 模板 · More Effective C++ · API 设计
 │   └── 📁 03.Golang/          # Go 语言基础
 ├── 📁 B-构建与脚本/            # 构建工具与脚本语言
-│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · 编译脚本 · 链接脚本
+│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · 编译脚本 · 链接脚本 · 配置渲染与固件变体
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++与Python互调用
 ├── 📁 C-Linux生态/             # Linux 全栈
 │   ├── 📁 01.Linux环境/        # 常用指令 · 动态库 · rpath · 加载与劫持 · grep · 目录结构 · 启动流程 · NFS · Tailscale+SSH

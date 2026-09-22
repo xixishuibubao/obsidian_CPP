@@ -35,7 +35,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 
 | 🛠️ **Dev Tools & Build** | 🌐 **Networking** | 📱 **Embedded MCU** |
 |:---:|:---:|:---:|
-| CLion · VS2022 · CMake (Beginner→Advanced) | Muduo Library · IO Models | Boot-App Mode · UART Memory Injection |
+| CLion · VS2022 · CMake (Beginner→Advanced→Config render) | Muduo Library · IO Models | Boot-App Mode · UART Memory Injection |
 
 | 🤖 **AI-Assisted Dev** | 📝 **Book Notes** | 🎯 **More Topics** |
 |:---:|:---:|:---:|
@@ -50,7 +50,7 @@ This is a **personal study notes knowledge base** focused on C/C++ systems progr
 │   ├── 📁 02.C++/             # C++ syntax · standards · templates · More Effective C++ · API Design
 │   └── 📁 03.Golang/          # Go basics
 ├── 📁 B-构建与脚本/            # Build & scripting
-│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts · linker scripts
+│   ├── 📁 01.构建工具/         # g++ · Makefile · CMake · build scripts · linker scripts · config render
 │   └── 📁 02.脚本语言/         # Shell · Lua · Python · C/C++↔Python
 ├── 📁 C-Linux生态/             # Linux ecosystem
 │   ├── 📁 01.Linux环境/        # commands · dynamic libs · rpath · dlopen · grep · NFS · Tailscale+SSH
